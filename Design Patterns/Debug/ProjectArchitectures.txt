@@ -1,1 +1,0 @@
-C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Design Patterns.vcxproj;x86
