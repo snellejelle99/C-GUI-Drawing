@@ -33,7 +33,7 @@
     <Capability Name="internetClient" />
   </Capabilities>
   <build:Metadata>
-    <build:Item Name="cl.exe" Version="19.15.26732.1 built by: VCTOOLSD15ULDR" />
+    <build:Item Name="cl.exe" Version="19.15.26729.0 built by: VCTOOLSD15ULDR" />
     <build:Item Name="VisualStudio" Version="15.0" />
     <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Community 2017" />
     <build:Item Name="OperatingSystem" Version="10.0.17134.1 (WinBuild.160101.0800)" />
