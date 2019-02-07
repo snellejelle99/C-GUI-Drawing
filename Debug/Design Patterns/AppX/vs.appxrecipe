@@ -10,14 +10,14 @@
     <PackageArchitecture>x86</PackageArchitecture>
     <PackageIdentityName>23ed694a-8f05-459f-85b5-73b53f625a95</PackageIdentityName>
     <PackageIdentityPublisher>CN=Jelle</PackageIdentityPublisher>
-    <IntermediateOutputPath>C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>D:\GITHUB\C-GUI-Drawing\Design Patterns\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>CopyToDevice</RemoteDeploymentType>
     <PackageRegistrationPath>
     </PackageRegistrationPath>
     <RemoveNonLayoutFiles>false</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>C:\Users\Jelle\source\repos\Design Patterns\Debug\Design Patterns\AppX</LayoutDir>
+    <LayoutDir>D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\AppX</LayoutDir>
     <RegisteredManifestChecksum>35B44C91FAFD00B3585B48F1658FABD114F07D0A07B2F8B7C2A9240868FF38E6</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>23ed694a-8f05-459f-85b5-73b53f625a95_1.0.0.0_x86__09dy8wqt6b0d0</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>23ed694a-8f05-459f-85b5-73b53f625a95_09dy8wqt6b0d0!App</RegisteredUserModeAppID>
@@ -27,68 +27,68 @@
     <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Jelle\source\repos\Design Patterns\Debug\Design Patterns\AppxManifest.xml">
+    <AppXManifest Include="D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2019-02-06T13:08:57.480</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Debug\Design Patterns\Design Patterns.exe">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exe">
       <PackagePath>Design Patterns.exe</PackagePath>
-      <Modified>2019-02-06T13:11:36.871</Modified>
+      <Modified>2019-02-07T10:29:42.314</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Debug\Design Patterns\Design_Patterns.winmd">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design_Patterns.winmd">
       <PackagePath>Design_Patterns.winmd</PackagePath>
       <Modified>2019-02-06T13:08:54.478</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Design Patterns\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
       <Modified>2019-02-06T13:03:44.290</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Design Patterns\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2019-02-06T13:03:44.290</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Design Patterns\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2019-02-06T13:03:44.290</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Design Patterns\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2019-02-06T13:03:44.290</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Design Patterns\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2019-02-06T13:03:44.290</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Design Patterns\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2019-02-06T13:03:44.290</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Design Patterns\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2019-02-06T13:03:44.290</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Debug\Design Patterns\App.xbf">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2019-02-06T13:08:54.621</Modified>
+      <Modified>2019-02-07T10:29:39.245</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Debug\Design Patterns\MainPage.xbf">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2019-02-06T13:11:34.804</Modified>
+      <Modified>2019-02-07T10:29:39.245</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.17134.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
       <Modified>2018-04-19T22:05:16.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Jelle\source\repos\Design Patterns\Debug\Design Patterns\resources.pri">
+    <AppxPackagedFile Include="D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2019-02-06T13:08:57.330</Modified>

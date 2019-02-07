@@ -1,1 +1,1 @@
-C:\Users\Jelle\source\repos\Design Patterns\Design Patterns\Design Patterns.vcxproj;x86
+D:\GITHUB\C-GUI-Drawing\Design Patterns\Design Patterns.vcxproj;x86
