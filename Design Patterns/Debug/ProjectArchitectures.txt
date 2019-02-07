@@ -1,1 +1,1 @@
-D:\GITHUB\C-GUI-Drawing\Design Patterns\Design Patterns.vcxproj;x86
+C:\Users\swenv\OneDrive\Desktop\GitHub Projects\C-GUI-Drawing\Design Patterns\Design Patterns.vcxproj;x86

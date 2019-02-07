@@ -3,6 +3,5 @@
   MainPage.xaml.cpp
   XamlTypeInfo.Impl.g.cpp
   XamlTypeInfo.g.cpp
-  LINK : D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exe not found or not built by the last incremental link; performing full link
-     Creating library D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.lib and object D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exp
-  Design Patterns.vcxproj -> D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exe
+     Creating library C:\Users\swenv\OneDrive\Desktop\GitHub Projects\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.lib and object C:\Users\swenv\OneDrive\Desktop\GitHub Projects\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exp
+  Design Patterns.vcxproj -> C:\Users\swenv\OneDrive\Desktop\GitHub Projects\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exe
