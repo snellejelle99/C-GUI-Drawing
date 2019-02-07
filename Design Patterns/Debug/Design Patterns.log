@@ -1,8 +1,2 @@
-﻿  pch.cpp
-  App.xaml.cpp
-  MainPage.xaml.cpp
-  XamlTypeInfo.Impl.g.cpp
-  XamlTypeInfo.g.cpp
-  LINK : D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exe not found or not built by the last incremental link; performing full link
-     Creating library D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.lib and object D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exp
-  Design Patterns.vcxproj -> D:\GITHUB\C-GUI-Drawing\Debug\Design Patterns\Design Patterns.exe
+﻿  XamlTypeInfo.g.cpp
+  Design Patterns.vcxproj -> C:\Users\Jelle\source\repos\Design Patterns\Debug\Design Patterns\Design Patterns.exe
