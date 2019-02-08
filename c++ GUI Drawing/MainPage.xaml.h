@@ -17,5 +17,8 @@ namespace c___GUI_Drawing
 	public:
 		MainPage();
 
+	private:
+		
+		void New_Drawing_BT_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

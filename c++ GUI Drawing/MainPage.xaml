@@ -5,10 +5,19 @@
     xmlns:local="using:c___GUI_Drawing"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
+    <Page.Background>
+        <ImageBrush/>
+    </Page.Background>
 
     <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="trianglify.png"/>
+        </Grid.Background>
+        <StackPanel HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Orientation="Vertical">
+            <TextBlock Margin="0,0,0,0" Text="C++ Graphics Editor" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="72"/>
+            <Button x:Name="New_Drawing_BT" Content="New Drawing" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48" Margin="0,50,0,0" AutomationProperties.Name="New_Drawing_BT" Click="New_Drawing_BT_Click"/>
+        </StackPanel>
 
     </Grid>
 </Page>

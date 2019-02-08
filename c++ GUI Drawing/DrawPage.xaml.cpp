@@ -1,10 +1,9 @@
 ﻿//
-// MainPage.xaml.cpp
-// Implementation of the MainPage class.
+// DrawPage.xaml.cpp
+// Implementation of the DrawPage class
 //
 
 #include "pch.h"
-#include "MainPage.xaml.h"
 #include "DrawPage.xaml.h"
 
 using namespace c___GUI_Drawing;
@@ -17,18 +16,12 @@ using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Controls::Primitives;
 using namespace Windows::UI::Xaml::Data;
 using namespace Windows::UI::Xaml::Input;
-using namespace Windows::UI::Xaml::Interop;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-MainPage::MainPage()
+DrawPage::DrawPage()
 {
 	InitializeComponent();
-}
-
-void c___GUI_Drawing::MainPage::New_Drawing_BT_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-	this->Frame->Navigate(DrawPage::typeid);
 }
