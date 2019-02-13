@@ -8,5 +8,16 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background="White"/>
+    <RelativePanel Background="White" VerticalAlignment="Stretch">
+        <StackPanel x:Name="ButtonBar" Orientation="Horizontal" VerticalAlignment="Top" Background="LightGray" HorizontalAlignment="Stretch" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+            <AppBarButton Icon="Back" Label="Revert" Click="RevertHandler"/>
+            <AppBarButton Icon="Forward" Label="f go back"/>
+            <AppBarButton Icon="Edit" Label="Edit"/>
+            <AppBarButton Icon="Add" Label="Add"/>
+            <AppBarButton Icon="ReShare" Label="Share"/>
+        </StackPanel>
+
+        <Canvas x:Name="canvas" HorizontalAlignment="Stretch" Background="Transparent" RelativePanel.Below="ButtonBar" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignRightWithPanel="True" PointerPressed="canvas_PointerPressed" PointerMoved="canvas_PointerMoved" PointerReleased="canvas_PointerReleased"/>
+
+    </RelativePanel>
 </Page>
