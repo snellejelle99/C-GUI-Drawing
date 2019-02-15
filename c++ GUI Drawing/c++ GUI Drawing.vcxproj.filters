@@ -8,6 +8,15 @@
       <UniqueIdentifier>bf668a16-ace1-4dd9-a4ab-2fab1aba6a6d</UniqueIdentifier>
       <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
     </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{fab8c115-7486-4461-acb4-a69a51737d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Rectangle">
+      <UniqueIdentifier>{29bed172-f31e-4a9f-b1c9-20bb0c5ea113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects\Elipse">
+      <UniqueIdentifier>{7485c27d-02fc-4672-8804-b7a49e365705}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -17,12 +26,30 @@
     <ClCompile Include="MainPage.xaml.cpp" />
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="DrawPage.xaml.cpp" />
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Objects\Rectangle</Filter>
+    </ClCompile>
+    <ClCompile Include="Ellipse.cpp">
+      <Filter>Objects\Elipse</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h" />
     <ClInclude Include="MainPage.xaml.h" />
     <ClInclude Include="DrawPage.xaml.h" />
+    <ClInclude Include="Rectangle.h">
+      <Filter>Objects\Rectangle</Filter>
+    </ClInclude>
+    <ClInclude Include="Ellipse.h">
+      <Filter>Objects\Elipse</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png">
