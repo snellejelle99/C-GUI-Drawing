@@ -33,6 +33,7 @@ DrawPage::DrawPage()
 Windows::UI::Input::PointerPoint ^startPoint;
 Windows::UI::Xaml::Shapes::Rectangle ^rect;
 Windows::UI::Xaml::Shapes::Ellipse ^ellip;
+Windows::UI::Color selectedColor;
 CShape curShape = rectangle;
 
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
@@ -42,8 +43,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 	if (curShape == rectangle)
 	{
 		rect = ref new Rectangle();
-		rect->Stroke = ref new SolidColorBrush(Windows::UI::Colors::Red);
-		rect->StrokeThickness = 2;
+		rect->Fill = ref new SolidColorBrush(selectedColor);
 		canvas->SetLeft(rect, startPoint->Position.X);
 		canvas->SetTop(rect, startPoint->Position.Y);
 		canvas->Children->Append(rect);
@@ -51,8 +51,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 	else if (curShape == ellipse)
 	{
 		ellip = ref new Ellipse();
-		ellip->Stroke = ref new SolidColorBrush(Windows::UI::Colors::Red);
-		ellip->StrokeThickness = 2;
+		ellip->Fill = ref new SolidColorBrush(selectedColor);
 		canvas->SetLeft(ellip, startPoint->Position.X);
 		canvas->SetTop(ellip, startPoint->Position.Y);
 		canvas->Children->Append(ellip);
@@ -107,4 +106,10 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 		curShape = rectangle;
 	else if (sender->Equals(EllipseObject))
 		curShape = ellipse;
+}
+
+
+void c___GUI_Drawing::DrawPage::ColorPicker_ColorChanged(Windows::UI::Xaml::Controls::ColorPicker^ sender, Windows::UI::Xaml::Controls::ColorChangedEventArgs^ args)
+{
+	selectedColor = sender->Color;
 }
