@@ -22,5 +22,6 @@ namespace c___GUI_Drawing
 		void canvas_PointerMoved(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
 		void canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
 		void RevertHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void ObjectToggle(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
