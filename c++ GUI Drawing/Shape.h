@@ -4,17 +4,12 @@
 class Shape
 {
 public:
-	Shape();
+	Shape(double left, double top);
 	~Shape();
 
-private:
+protected:
 	double left;
 	double top;
-	double height;
-	double width;
-
-
-
 
 };
 

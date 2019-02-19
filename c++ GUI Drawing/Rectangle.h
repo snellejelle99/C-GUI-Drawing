@@ -3,13 +3,16 @@
 
 #include "Shape.h"
 
+
+
 class Rectangle : public Shape
 {
 public:
-	Rectangle();
+	Rectangle(double left, double top, Windows::UI::Xaml::Shapes::Rectangle ^rect );
 	~Rectangle();
 
 private:
+	Windows::UI::Xaml::Shapes::Rectangle ^rect;
 
 };
 

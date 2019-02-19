@@ -17,6 +17,9 @@
     <Filter Include="Objects\Elipse">
       <UniqueIdentifier>{7485c27d-02fc-4672-8804-b7a49e365705}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{4f5ee22b-f001-46ea-b1cb-0f9ee2adcc9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -49,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="Shape.h">
       <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
