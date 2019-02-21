@@ -8,8 +8,10 @@
 class Rectangle : public Shape
 {
 public:
-	Rectangle(double left, double top, Windows::UI::Xaml::Shapes::Rectangle ^rect );
+	Rectangle(double left, double top, Windows::UI::Color color, Windows::UI::Xaml::Shapes::Rectangle ^rect );
 	~Rectangle();
+
+	virtual void ChangeColor(Windows::UI::Color newColor);
 
 private:
 	Windows::UI::Xaml::Shapes::Rectangle ^rect;
