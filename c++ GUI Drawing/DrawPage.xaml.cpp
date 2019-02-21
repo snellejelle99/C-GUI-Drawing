@@ -36,9 +36,11 @@ Windows::UI::Xaml::Shapes::Ellipse ^ellip;
 Windows::UI::Color selectedColor;
 CShape curShape = rectangle;
 
+
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	startPoint = e->GetCurrentPoint(canvas);
+
 
 	if (curShape == rectangle)
 	{

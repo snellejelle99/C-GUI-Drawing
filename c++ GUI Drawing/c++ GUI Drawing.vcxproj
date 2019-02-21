@@ -140,6 +140,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ChangeColorCommand.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="DrawPage.xaml.h">
       <DependentUpon>DrawPage.xaml</DependentUpon>
@@ -186,6 +187,7 @@
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
+    <ClCompile Include="ChangeColorCommand.cpp" />
     <ClCompile Include="DrawPage.xaml.cpp">
       <DependentUpon>DrawPage.xaml</DependentUpon>
     </ClCompile>
