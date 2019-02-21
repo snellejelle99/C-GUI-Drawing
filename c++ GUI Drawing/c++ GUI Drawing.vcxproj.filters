@@ -23,6 +23,9 @@
     <Filter Include="Helpers">
       <UniqueIdentifier>{93173a5a-9a3b-4cc8-8efd-f821d6e8d8c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Command Stack">
+      <UniqueIdentifier>{6cd48539-09f9-4aac-8b92-812719ba35c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -44,6 +47,9 @@
     <ClCompile Include="ChangeColorCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="CommandStack.cpp">
+      <Filter>Command Stack</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="ChangeColorCommand.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandStack.h">
+      <Filter>Command Stack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
