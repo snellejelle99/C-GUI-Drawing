@@ -23,6 +23,8 @@ using namespace Windows::UI::Xaml::Shapes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
+enum CShape { rectangle, ellipse };
+
 DrawPage::DrawPage()
 {
 	InitializeComponent();
@@ -30,25 +32,37 @@ DrawPage::DrawPage()
 
 Windows::UI::Input::PointerPoint ^startPoint;
 Windows::UI::Xaml::Shapes::Rectangle ^rect;
+Windows::UI::Xaml::Shapes::Ellipse ^ellip;
+Windows::UI::Color selectedColor;
+CShape curShape = rectangle;
 
 
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	startPoint = e->GetCurrentPoint(canvas);
 
-	rect = ref new Rectangle();
-	rect->Stroke = ref new SolidColorBrush(Windows::UI::Colors::Red);
-	rect->StrokeThickness = 2;
-	canvas->SetLeft(rect, startPoint->Position.X);
-	canvas->SetTop(rect, startPoint->Position.Y);
-	canvas->Children->Append(rect);
-	auto ding = rect->Stroke->GetValue()
-}
 
+	if (curShape == rectangle)
+	{
+		rect = ref new Rectangle();
+		rect->Fill = ref new SolidColorBrush(selectedColor);
+		canvas->SetLeft(rect, startPoint->Position.X);
+		canvas->SetTop(rect, startPoint->Position.Y);
+		canvas->Children->Append(rect);
+	}
+	else if (curShape == ellipse)
+	{
+		ellip = ref new Ellipse();
+		ellip->Fill = ref new SolidColorBrush(selectedColor);
+		canvas->SetLeft(ellip, startPoint->Position.X);
+		canvas->SetTop(ellip, startPoint->Position.Y);
+		canvas->Children->Append(ellip);
+	}
+}
 
 void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
-	if (e->Pointer->IsInContact == false || rect == nullptr)
+	if (e->Pointer->IsInContact == false || (rect == nullptr && ellip == nullptr))
 		return;
 
 	Windows::UI::Input::PointerPoint ^pos = e->GetCurrentPoint(canvas);
@@ -59,16 +73,28 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 	double w = max(pos->Position.X, startPoint->Position.X) - x;
 	double h = max(pos->Position.Y, startPoint->Position.Y) - y;
 
-	rect->Width = w;
-	rect->Height = h;
+	if (curShape == rectangle)
+	{
+		rect->Width = w;
+		rect->Height = h;
 
-	canvas->SetLeft(rect, x);
-	canvas->SetTop(rect, y);
+		canvas->SetLeft(rect, x);
+		canvas->SetTop(rect, y);
+	}
+	else if (curShape == ellipse)
+	{
+		ellip->Width = w;
+		ellip->Height = h;
+
+		canvas->SetLeft(ellip, x);
+		canvas->SetTop(ellip, y);
+	}
 }
 
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	rect = nullptr;
+	ellip = nullptr;
 }
 
 void c___GUI_Drawing::DrawPage::RevertHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
@@ -76,5 +102,16 @@ void c___GUI_Drawing::DrawPage::RevertHandler(Platform::Object^ sender, Windows:
 
 }
 
+void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	if (sender->Equals(RectangleObject))
+		curShape = rectangle;
+	else if (sender->Equals(EllipseObject))
+		curShape = ellipse;
+}
 
 
+void c___GUI_Drawing::DrawPage::ColorPicker_ColorChanged(Windows::UI::Xaml::Controls::ColorPicker^ sender, Windows::UI::Xaml::Controls::ColorChangedEventArgs^ args)
+{
+	selectedColor = sender->Color;
+}
