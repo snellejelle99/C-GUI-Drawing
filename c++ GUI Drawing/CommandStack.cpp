@@ -10,21 +10,22 @@ CMDStack::CMDStack(const std::stack<Command*> executeStack, const std::stack<Com
 
 void CMDStack::Add(Command * const newCMD)
 {
+	newCMD->Execute();
 	executeStack.push(newCMD);
 }
 
-Command* CMDStack::Undo()
+void CMDStack::Undo()
 {
+	executeStack.top()->Undo();
 	revertStack.push(executeStack.top());
 	executeStack.pop();
-	return revertStack.top();
 }
 
-Command* CMDStack::Redo()
+void CMDStack::Redo()
 {
+	revertStack.top()->Execute();
 	executeStack.push(revertStack.top());
 	revertStack.pop();
-	return executeStack.top();
 }
 
 CMDStack::~CMDStack()

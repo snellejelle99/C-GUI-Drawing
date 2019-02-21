@@ -10,10 +10,10 @@ public:
 	CMDStack(const std::stack<Command*> executeStack, const std::stack<Command*> revertStack);
 	~CMDStack();
 	void Add(Command * const newCMD);
-	Command* Undo();
-	Command* Redo();
+	void Undo();
+	void Redo();
 private:
-	std::stack<Command*> executeStack;
-	std::stack<Command*> revertStack;
+	std::stack<Command*> executeStack; // is geexecute
+	std::stack<Command*> revertStack; // is gerevert
 };
 #endif // !
