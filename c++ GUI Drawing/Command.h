@@ -1,4 +1,5 @@
-#pragma once
+#ifndef COMMAND
+#define COMMAND
 class Command
 {
 public:
@@ -7,3 +8,4 @@ public:
 	virtual void undo() = 0;
 };
 
+#endif

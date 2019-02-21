@@ -31,6 +31,7 @@ DrawPage::DrawPage()
 Windows::UI::Input::PointerPoint ^startPoint;
 Windows::UI::Xaml::Shapes::Rectangle ^rect;
 
+
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	startPoint = e->GetCurrentPoint(canvas);
@@ -41,6 +42,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 	canvas->SetLeft(rect, startPoint->Position.X);
 	canvas->SetTop(rect, startPoint->Position.Y);
 	canvas->Children->Append(rect);
+	auto ding = rect->Stroke->GetValue()
 }
 
 

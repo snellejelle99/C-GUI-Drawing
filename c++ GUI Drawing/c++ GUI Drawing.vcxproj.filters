@@ -20,6 +20,9 @@
     <Filter Include="Commands">
       <UniqueIdentifier>{4f5ee22b-f001-46ea-b1cb-0f9ee2adcc9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Helpers">
+      <UniqueIdentifier>{93173a5a-9a3b-4cc8-8efd-f821d6e8d8c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -38,6 +41,9 @@
     <ClCompile Include="Shape.cpp">
       <Filter>Objects</Filter>
     </ClCompile>
+    <ClCompile Include="ChangeColorCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -54,6 +60,9 @@
       <Filter>Objects</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeColorCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
