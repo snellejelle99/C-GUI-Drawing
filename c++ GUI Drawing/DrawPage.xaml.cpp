@@ -43,11 +43,13 @@ DrawPage::DrawPage()
 	InitializeComponent();
 }
 
+// global initialization of required variables for creating shapes
 Windows::UI::Input::PointerPoint ^startPoint;
 Windows::UI::Xaml::Shapes::Rectangle ^rect;
 Windows::UI::Xaml::Shapes::Ellipse ^ellip;
-Windows::UI::Color selectedColor;
-CShape curShape = rectangle;
+
+Windows::UI::Color selectedColor; // currently selected color
+CShape curShape = rectangle; // currently selected shape (default rectangle)
 
 //list of shapes
 std::vector<Shape*> shapes;
@@ -55,12 +57,11 @@ std::vector<Shape*> shapes;
 //commandstack
 CMDStack commandStack = CMDStack();
 
-
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	startPoint = e->GetCurrentPoint(canvas);
 
-
+	// create shape with selected variables
 	if (curShape == rectangle)
 	{
 		rect = ref new Shapes::Rectangle();
@@ -81,9 +82,11 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 
 void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
+	// returns when no modification to the shape needs to be done
 	if (e->Pointer->IsInContact == false || (rect == nullptr && ellip == nullptr))
 		return;
 
+	// updates shape with new variables
 	Windows::UI::Input::PointerPoint ^pos = e->GetCurrentPoint(canvas);
 
 	double x = min(pos->Position.X, startPoint->Position.X);
@@ -112,8 +115,8 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
+	// define shape object and add it to the commandstack
 	double left, top;
-	
 	Shape* shape = nullptr;
 
 	if (curShape == rectangle) 
