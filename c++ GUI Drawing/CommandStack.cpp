@@ -16,16 +16,22 @@ void CMDStack::Add(Command * const newCMD)
 
 void CMDStack::Undo()
 {
-	executeStack.top()->Undo();
-	revertStack.push(executeStack.top());
-	executeStack.pop();
+	if (!executeStack.empty())
+	{
+		executeStack.top()->Undo();
+		revertStack.push(executeStack.top());
+		executeStack.pop();
+	}
 }
 
 void CMDStack::Redo()
 {
-	revertStack.top()->Execute();
-	executeStack.push(revertStack.top());
-	revertStack.pop();
+	if (!revertStack.empty())
+	{
+		revertStack.top()->Execute();
+		executeStack.push(revertStack.top());
+		revertStack.pop();
+	}
 }
 
 CMDStack::~CMDStack()

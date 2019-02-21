@@ -10,8 +10,8 @@
 
     <RelativePanel Background="White" VerticalAlignment="Stretch">
         <StackPanel x:Name="TopBar" Orientation="Horizontal" VerticalAlignment="Top" Background="Gray" HorizontalAlignment="Stretch" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
-            <AppBarButton Icon="Back" Label="Revert" Click="RevertHandler"/>
-            <AppBarButton Name="Yeet" Icon="Forward" Label="f go back"/>
+            <AppBarButton Icon="Back" Label="Undo" Click="UndoHandler"/>
+            <AppBarButton Name="Redo" Icon="Forward" Label="Redo" Click="RedoHandler"/>
             <AppBarButton Icon="Edit" Label="Edit">
                 <AppBarButton.Flyout>
                     <MenuFlyout>

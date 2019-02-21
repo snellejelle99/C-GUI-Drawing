@@ -15,6 +15,9 @@
 #include "Command.h"
 #include "ChangeColorCommand.h"
 
+//commandstack
+#include "CommandStack.h"
+
 //#include <cmath>
 
 using namespace c___GUI_Drawing;
@@ -48,6 +51,9 @@ CShape curShape = rectangle;
 
 //list of shapes
 std::vector<Shape*> shapes;
+
+//commandstack
+CMDStack commandStack = CMDStack();
 
 
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
@@ -127,7 +133,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender,
 
 	Command* cmd = new ChangeColorCommand(shape, Windows::UI::ColorHelper::FromArgb(255, 0, 0, 0));
 
-	cmd->Execute();
+	commandStack.Add(cmd);
 
 	rect = nullptr;
 	ellip = nullptr;
@@ -146,7 +152,12 @@ void c___GUI_Drawing::DrawPage::ColorPicker_ColorChanged(Windows::UI::Xaml::Cont
 	selectedColor = sender->Color;
 }
 
-void c___GUI_Drawing::DrawPage::RevertHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+void c___GUI_Drawing::DrawPage::UndoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+	commandStack.Undo();
+}
 
+void c___GUI_Drawing::DrawPage::RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	commandStack.Redo();
 }
