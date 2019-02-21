@@ -8,3 +8,8 @@ Shape::Shape(double left, double top, Windows::UI::Color color) : left(left), to
 Shape::~Shape()
 {
 }
+
+Windows::UI::Color Shape::GetColor()
+{
+	return color;
+}

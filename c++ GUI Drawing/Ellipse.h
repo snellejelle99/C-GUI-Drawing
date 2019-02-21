@@ -6,8 +6,10 @@
 class Ellipse : public Shape
 {
 public:
-	Ellipse(double left, double top, Windows::UI::Xaml::Shapes::Ellipse ^ellipse);
+	Ellipse(double left, double top, Windows::UI::Color color, Windows::UI::Xaml::Shapes::Ellipse ^ellipse);
 	~Ellipse();
+
+	virtual void ChangeColor(Windows::UI::Color newColor);
 
 private:
 	Windows::UI::Xaml::Shapes::Ellipse ^ellipse;
