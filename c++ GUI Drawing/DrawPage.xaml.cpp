@@ -5,6 +5,16 @@
 
 #include "pch.h"
 #include "DrawPage.xaml.h"
+
+//shapes
+#include "Shape.h"
+#include "Rectangle.h"
+#include "Ellipse.h"
+
+//commands
+#include "Command.h"
+#include "ChangeColorCommand.h"
+
 //#include <cmath>
 
 using namespace c___GUI_Drawing;
@@ -19,7 +29,7 @@ using namespace Windows::UI::Xaml::Data;
 using namespace Windows::UI::Xaml::Input;
 using namespace Windows::UI::Xaml::Media;
 using namespace Windows::UI::Xaml::Navigation;
-using namespace Windows::UI::Xaml::Shapes;
+//using namespace Windows::UI::Xaml::Shapes;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -36,6 +46,9 @@ Windows::UI::Xaml::Shapes::Ellipse ^ellip;
 Windows::UI::Color selectedColor;
 CShape curShape = rectangle;
 
+//list of shapes
+std::vector<Shape*> shapes;
+
 
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
@@ -44,7 +57,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 
 	if (curShape == rectangle)
 	{
-		rect = ref new Rectangle();
+		rect = ref new Shapes::Rectangle();
 		rect->Fill = ref new SolidColorBrush(selectedColor);
 		canvas->SetLeft(rect, startPoint->Position.X);
 		canvas->SetTop(rect, startPoint->Position.Y);
@@ -52,7 +65,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 	}
 	else if (curShape == ellipse)
 	{
-		ellip = ref new Ellipse();
+		ellip = ref new Shapes::Ellipse();
 		ellip->Fill = ref new SolidColorBrush(selectedColor);
 		canvas->SetLeft(ellip, startPoint->Position.X);
 		canvas->SetTop(ellip, startPoint->Position.Y);
@@ -93,6 +106,29 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
+	double left, top;
+	
+	Shape* shape = nullptr;
+
+	if (curShape == rectangle) 
+	{
+		left = canvas->GetLeft(rect);
+		top = canvas->GetTop(rect);
+		shape = new Rectangle(left, top, selectedColor, rect);
+	}
+	else if (curShape == ellipse)
+	{
+		left = canvas->GetLeft(ellip);
+		top = canvas->GetTop(ellip);
+		shape = new Ellipse(left, top, selectedColor, ellip);
+	}
+
+	shapes.push_back(shape);
+
+	Command* cmd = new ChangeColorCommand(shape, Windows::UI::ColorHelper::FromArgb(255, 0, 0, 0));
+
+	cmd->Execute();
+
 	rect = nullptr;
 	ellip = nullptr;
 }

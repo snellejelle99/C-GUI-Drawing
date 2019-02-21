@@ -8,14 +8,14 @@ class ChangeColorCommand :
 	public Command
 {
 public:
-	ChangeColorCommand(Shape & shape, Windows::UI::Color newColor);
+	ChangeColorCommand(Shape* shape, Windows::UI::Color newColor);
 	~ChangeColorCommand();
 
 	virtual void Execute();
 	virtual void Undo();
 
 private:
-	Shape shape;
+	Shape* shape;
 	Windows::UI::Color newColor;
 	Windows::UI::Color oldColor;
 

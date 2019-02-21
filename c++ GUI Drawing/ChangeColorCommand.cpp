@@ -2,7 +2,7 @@
 
 
 
-ChangeColorCommand::ChangeColorCommand(Shape & shape, Windows::UI::Color newColor) : shape(shape), newColor(newColor), oldColor(shape.GetColor())
+ChangeColorCommand::ChangeColorCommand(Shape* shape, Windows::UI::Color newColor) : shape(shape), newColor(newColor), oldColor(shape->GetColor())
 {
 }
 
@@ -13,10 +13,10 @@ ChangeColorCommand::~ChangeColorCommand()
 
 void ChangeColorCommand::Execute()
 {
-	shape.ChangeColor(newColor);
+	shape->ChangeColor(newColor);
 }
 
 void ChangeColorCommand::Undo()
 {
-	shape.ChangeColor(oldColor);
+	shape->ChangeColor(oldColor);
 }
