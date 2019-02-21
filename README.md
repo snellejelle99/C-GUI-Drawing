@@ -12,6 +12,7 @@ These instructions will get you a copy of the project up and running on your loc
 ```
 Windows 10 Version 1809 (October 2018 Update) or higher
 Visual studio 2017 version 15.7 or higher
+Universal Windows Platform development package for visual studio
 ```
 
 ### Installing development Environment
@@ -23,12 +24,14 @@ You can download using the link below
 ```
 [Download link](https://github.com/snellejelle99/C-GUI-Drawing/archive/master.zip) 
 
-Unzip the downloaded file using the powershell or another tool of your linking
+Unzip the downloaded file using the powershell or another tool of your liking
 
 ```
-powershell exmple:
+powershell example:
 Expand-Archive c:\Users\*User*\Downloads\C-GUI-Drawing-master.zip -DestinationPath c:\Users\*User*\Documents
 ```
+
+Open the `c++ GUI Drawing` folder
 
 Open `c++ GUI Drawing.sln` using visual studio 2017
 
