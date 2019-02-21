@@ -95,11 +95,6 @@ void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender,
 	ellip = nullptr;
 }
 
-void c___GUI_Drawing::DrawPage::RevertHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-
-}
-
 void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	if (sender->Equals(RectangleObject))
@@ -108,8 +103,12 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 		curShape = ellipse;
 }
 
-
 void c___GUI_Drawing::DrawPage::ColorPicker_ColorChanged(Windows::UI::Xaml::Controls::ColorPicker^ sender, Windows::UI::Xaml::Controls::ColorChangedEventArgs^ args)
 {
 	selectedColor = sender->Color;
+}
+
+void c___GUI_Drawing::DrawPage::RevertHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+
 }
