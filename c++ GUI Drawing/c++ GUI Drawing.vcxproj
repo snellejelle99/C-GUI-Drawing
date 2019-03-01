@@ -140,6 +140,8 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AddEllipseCommand.h" />
+    <ClInclude Include="AddRectangleCommand.h" />
     <ClInclude Include="ChangeColorCommand.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandStack.h" />
@@ -156,6 +158,7 @@
     <ClInclude Include="MainPage.xaml.h">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="Stratergy.h" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -185,6 +188,8 @@
     <Image Include="trianglify.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AddEllipseCommand.cpp" />
+    <ClCompile Include="AddRectangleCommand.cpp" />
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
