@@ -21,7 +21,7 @@
                 </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton Icon="Add" Label="Add"/>
-            <AppBarButton Icon="ReShare" Label="Share"/>
+            <AppBarButton Icon="Save" Label="Save" Click="SaveHandler"/>
         </StackPanel>
 
         <StackPanel x:Name="SideBar" Orientation="Vertical" Background="LightGray" Padding="10" RelativePanel.Below="TopBar" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True">

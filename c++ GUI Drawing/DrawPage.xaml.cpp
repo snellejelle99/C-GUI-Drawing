@@ -6,6 +6,9 @@
 #include "pch.h"
 #include "DrawPage.xaml.h"
 
+//saver singleton
+#include "Saver.h"
+
 //shapes
 #include "Shape.h"
 #include "Rectangle.h"
@@ -138,6 +141,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender,
 
 	commandStack.Add(cmd);
 
+
 	rect = nullptr;
 	ellip = nullptr;
 }
@@ -163,4 +167,9 @@ void c___GUI_Drawing::DrawPage::UndoHandler(Platform::Object^ sender, Windows::U
 void c___GUI_Drawing::DrawPage::RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	commandStack.Redo();
+}
+
+void c___GUI_Drawing::DrawPage::SaveHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	Saver::GetSaver()->SaveCanvas(shapes);
 }

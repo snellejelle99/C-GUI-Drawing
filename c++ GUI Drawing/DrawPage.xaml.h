@@ -25,5 +25,6 @@ namespace c___GUI_Drawing
 		void ObjectToggle(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void ColorPicker_ColorChanged(Windows::UI::Xaml::Controls::ColorPicker^ sender, Windows::UI::Xaml::Controls::ColorChangedEventArgs^ args);
 		void RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void SaveHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

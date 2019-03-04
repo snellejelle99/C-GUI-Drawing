@@ -10,6 +10,7 @@ public:
 	~Ellipse();
 
 	virtual void ChangeColor(Windows::UI::Color newColor);
+	virtual std::string ToString();
 
 private:
 	Windows::UI::Xaml::Shapes::Ellipse ^ellipse;
