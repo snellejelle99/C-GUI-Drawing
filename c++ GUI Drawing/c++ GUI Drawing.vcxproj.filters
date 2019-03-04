@@ -1,133 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <ItemGroup>
-    <Filter Include="Common">
-      <UniqueIdentifier>6fc5781f-8eaf-4db7-9fe2-b727230bd7bb</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Assets">
-      <UniqueIdentifier>bf668a16-ace1-4dd9-a4ab-2fab1aba6a6d</UniqueIdentifier>
-      <Extensions>bmp;fbx;gif;jpg;jpeg;tga;tiff;tif;png</Extensions>
-    </Filter>
-    <Filter Include="Objects">
-      <UniqueIdentifier>{fab8c115-7486-4461-acb4-a69a51737d5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Rectangle">
-      <UniqueIdentifier>{29bed172-f31e-4a9f-b1c9-20bb0c5ea113}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Objects\Elipse">
-      <UniqueIdentifier>{7485c27d-02fc-4672-8804-b7a49e365705}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Commands">
-      <UniqueIdentifier>{4f5ee22b-f001-46ea-b1cb-0f9ee2adcc9f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Helpers">
-      <UniqueIdentifier>{93173a5a-9a3b-4cc8-8efd-f821d6e8d8c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Command Stack">
-      <UniqueIdentifier>{6cd48539-09f9-4aac-8b92-812719ba35c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Stratergy">
-      <UniqueIdentifier>{cc8bd238-5c2c-49fa-bfdb-1b0ba936338d}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.xaml.cpp" />
+    <ClCompile Include="DrawPage.xaml.cpp" />
     <ClCompile Include="MainPage.xaml.cpp" />
     <ClCompile Include="pch.cpp" />
-    <ClCompile Include="DrawPage.xaml.cpp" />
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Objects\Rectangle</Filter>
+    <ClCompile Include="AddEllipseCommand.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
-    <ClCompile Include="Ellipse.cpp">
-      <Filter>Objects\Elipse</Filter>
-    </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Objects</Filter>
+    <ClCompile Include="AddRectangleCommand.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="ChangeColorCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
     <ClCompile Include="CommandStack.cpp">
-      <Filter>Command Stack</Filter>
-    </ClCompile>
-    <ClCompile Include="Saver.cpp">
-      <Filter>Helpers</Filter>
-    <ClCompile Include="AddRectangleCommand.cpp">
-      <Filter>Commands</Filter>
-    </ClCompile>
-    <ClCompile Include="AddEllipseCommand.cpp">
-      <Filter>Commands</Filter>
+      <Filter>CommandStack</Filter>
     </ClCompile>
     <ClCompile Include="DeleteCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="Ellipse.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Saver.cpp">
+      <Filter>Saver</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DrawPage.xaml.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h" />
     <ClInclude Include="MainPage.xaml.h" />
-    <ClInclude Include="DrawPage.xaml.h" />
-    <ClInclude Include="Rectangle.h">
-      <Filter>Objects\Rectangle</Filter>
+    <ClInclude Include="Stratergy.h" />
+    <ClInclude Include="AddEllipseCommand.h">
+      <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="Ellipse.h">
-      <Filter>Objects\Elipse</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Objects</Filter>
-    </ClInclude>
-    <ClInclude Include="Command.h">
+    <ClInclude Include="AddRectangleCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="ChangeColorCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
     <ClInclude Include="CommandStack.h">
-      <Filter>Command Stack</Filter>
-    </ClInclude>
-    <ClInclude Include="Saver.h">
-      <Filter>Helpers</Filter>
-    <ClInclude Include="Stratergy.h">
-      <Filter>Stratergy</Filter>
-    </ClInclude>
-    <ClInclude Include="AddRectangleCommand.h">
-      <Filter>Commands</Filter>
-    </ClInclude>
-    <ClInclude Include="AddEllipseCommand.h">
-      <Filter>Commands</Filter>
+      <Filter>CommandStack</Filter>
     </ClInclude>
     <ClInclude Include="DeleteCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="Ellipse.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Saver.h">
+      <Filter>Saver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\LockScreenLogo.scale-200.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\SplashScreen.scale-200.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\Square150x150Logo.scale-200.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\Square44x44Logo.scale-200.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\StoreLogo.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="Assets\Wide310x150Logo.scale-200.png">
-      <Filter>Assets</Filter>
-    </Image>
-    <Image Include="trianglify.png">
-      <Filter>Assets</Filter>
-    </Image>
+    <Image Include="Assets\LockScreenLogo.scale-200.png" />
+    <Image Include="Assets\SplashScreen.scale-200.png" />
+    <Image Include="Assets\Square150x150Logo.scale-200.png" />
+    <Image Include="Assets\Square44x44Logo.scale-200.png" />
+    <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
+    <Image Include="Assets\StoreLogo.png" />
+    <Image Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Image Include="trianglify.png" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
@@ -136,7 +90,24 @@
     <None Include="c++ GUI Drawing_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="MainPage.xaml" />
     <Page Include="DrawPage.xaml" />
+    <Page Include="MainPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Commands">
+      <UniqueIdentifier>{08035890-e6d9-4950-8cd8-96458d31db9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objects">
+      <UniqueIdentifier>{0f33de58-58cd-4a5d-96e8-e8015f2054b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Strategy">
+      <UniqueIdentifier>{9158ffea-e0ed-46d9-b898-93d257c05ec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CommandStack">
+      <UniqueIdentifier>{e85707ab-f5e3-46f4-a74d-5aef89e08343}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Saver">
+      <UniqueIdentifier>{cf8750c3-054f-447e-994e-12472bc3ab55}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
