@@ -36,17 +36,6 @@ void Saver::SetPath()
 int Saver::SaveCanvas(std::vector<Shape*>shapes)
 {
 
-	//get data that needs saving
-	Platform::String saveData;
-	
-	for (Shape* sh : shapes)
-	{
-		std::string data = sh->ToString();
-		for (char ch : data)
-		{
-			saveData += (char16_t)ch;
-		}
-	}
 
 	FileSavePicker^ savePicker = ref new FileSavePicker();
 	savePicker->SuggestedStartLocation = PickerLocationId::DocumentsLibrary;
