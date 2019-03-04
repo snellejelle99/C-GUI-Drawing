@@ -50,6 +50,9 @@
     <ClCompile Include="CommandStack.cpp">
       <Filter>Command Stack</Filter>
     </ClCompile>
+    <ClCompile Include="Saver.cpp">
+      <Filter>Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="CommandStack.h">
       <Filter>Command Stack</Filter>
+    </ClInclude>
+    <ClInclude Include="Saver.h">
+      <Filter>Helpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
