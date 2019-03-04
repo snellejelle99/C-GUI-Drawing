@@ -14,3 +14,9 @@ void Ellipse::ChangeColor(Windows::UI::Color newColor)
 {
 	ellipse->Fill = ref new SolidColorBrush(newColor);
 }
+
+bool Ellipse::CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape)
+{
+	if (shape == this->ellipse) return true;
+	else return false;
+}

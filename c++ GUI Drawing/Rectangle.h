@@ -10,10 +10,10 @@ public:
 	~Rectangle();
 
 	virtual void ChangeColor(Windows::UI::Color newColor);
+	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape);
 
 private:
 	Windows::UI::Xaml::Shapes::Rectangle ^rect;
-
 };
 
 

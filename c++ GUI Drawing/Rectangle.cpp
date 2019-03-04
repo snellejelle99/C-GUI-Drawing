@@ -13,5 +13,10 @@ Rectangle::~Rectangle()
 void Rectangle::ChangeColor(Windows::UI::Color newColor)
 {
 	rect->Fill = ref new SolidColorBrush(newColor);
+}
 
+bool Rectangle::CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape)
+{
+	if (shape == this->rect) return true;
+	else return false;
 }

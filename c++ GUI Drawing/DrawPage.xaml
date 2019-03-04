@@ -12,23 +12,38 @@
         <StackPanel x:Name="TopBar" Orientation="Horizontal" VerticalAlignment="Top" Background="Gray" HorizontalAlignment="Stretch" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
             <AppBarButton Icon="Back" Label="Undo" Click="UndoHandler"/>
             <AppBarButton Name="Redo" Icon="Forward" Label="Redo" Click="RedoHandler"/>
-            <AppBarButton Icon="Edit" Label="Edit">
-                <AppBarButton.Flyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Text="Rectangle" Click="ObjectToggle" Name="RectangleObject"/>
-                        <MenuFlyoutItem Text="Eclipse" Click="ObjectToggle" Name="EllipseObject"/>
-                    </MenuFlyout>
-                </AppBarButton.Flyout>
-            </AppBarButton>
             <AppBarButton Icon="Add" Label="Add"/>
             <AppBarButton Icon="ReShare" Label="Share"/>
+        </StackPanel>
+
+        <StackPanel x:Name="Toolbar" Orientation="Vertical" Background="LightGray" RelativePanel.Below="TopBar" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
+            <AppBarButton Label="Rectangle" Name="RectangleSelect" Click="ObjectToggle">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE739;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="Ellipse" Name="EllipseSelect" Click="ObjectToggle">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEA3A;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="Color" Name="ColorSelect" Click="ObjectToggle">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
+            <AppBarButton Label="Delete" Name="DeleteSelect" Click="ObjectToggle">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" />
+                </AppBarButton.Icon>
+            </AppBarButton>         
         </StackPanel>
 
         <StackPanel x:Name="SideBar" Orientation="Vertical" Background="LightGray" Padding="10" RelativePanel.Below="TopBar" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True">
             <ColorPicker IsColorSliderVisible="True" IsColorChannelTextInputVisible="True" IsHexInputVisible="False" IsAlphaEnabled="True" IsAlphaSliderVisible="True" IsAlphaTextInputVisible="True" ColorChanged="ColorPicker_ColorChanged"/>
         </StackPanel>
 
-        <Canvas x:Name="canvas" HorizontalAlignment="Stretch" Background="Transparent" RelativePanel.Below="TopBar" RelativePanel.LeftOf="SideBar" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True" PointerPressed="canvas_PointerPressed" PointerMoved="canvas_PointerMoved" PointerReleased="canvas_PointerReleased"/>
+        <Canvas x:Name="canvas" HorizontalAlignment="Stretch" Background="Transparent" RelativePanel.Below="TopBar" RelativePanel.LeftOf="SideBar" RelativePanel.RightOf="Toolbar" RelativePanel.AlignBottomWithPanel="True" PointerPressed="canvas_PointerPressed" PointerMoved="canvas_PointerMoved" PointerReleased="canvas_PointerReleased"/>
 
     </RelativePanel>
 

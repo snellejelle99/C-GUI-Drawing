@@ -59,6 +59,9 @@
     <ClCompile Include="AddEllipseCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="DeleteCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -90,6 +93,9 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="AddEllipseCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="DeleteCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>

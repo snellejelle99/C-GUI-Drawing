@@ -12,6 +12,7 @@ public:
 	Windows::UI::Color GetColor();
 
 	virtual void ChangeColor(Windows::UI::Color newColor) = 0;
+	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape) = 0;
 
 protected:
 	double left;

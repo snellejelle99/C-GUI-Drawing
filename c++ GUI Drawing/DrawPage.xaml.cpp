@@ -8,12 +8,15 @@
 
 //shapes
 #include "Shape.h"
+#include "Rectangle.h"
+#include "Ellipse.h"
 
 //commands
 #include "Command.h"
 #include "ChangeColorCommand.h"
 #include "AddRectangleCommand.h"
 #include "AddEllipseCommand.h"
+#include "DeleteCommand.h"
 
 //commandstack
 #include "CommandStack.h"
@@ -36,7 +39,7 @@ using namespace Windows::UI::Xaml::Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-enum CShape { rectangle, ellipse };
+enum SelectedElem { rectangle, ellipse, color, del };
 
 DrawPage::DrawPage()
 {
@@ -49,7 +52,7 @@ Windows::UI::Xaml::Shapes::Rectangle ^rect;
 Windows::UI::Xaml::Shapes::Ellipse ^ellip;
 
 Windows::UI::Color selectedColor; // currently selected color
-CShape curShape = rectangle; // currently selected shape (default rectangle)
+SelectedElem sElem = rectangle; // currently selected shape (default rectangle)
 
 //list of shapes
 std::vector<Shape*> shapes;
@@ -59,20 +62,25 @@ CMDStack commandStack = CMDStack();
 
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
+	// returns if shape is not selected
+	if (sElem == color || sElem == del) return;
+
 	startPoint = e->GetCurrentPoint(canvas);
 
 	// create shape with selected variables
-	if (curShape == rectangle)
+	if (sElem == rectangle)
 	{
 		rect = ref new Shapes::Rectangle();
+		rect->AddHandler(UIElement::TappedEvent, ref new TappedEventHandler(this, &DrawPage::SelectHandler), true);
 		rect->Fill = ref new SolidColorBrush(selectedColor);
 		canvas->SetLeft(rect, startPoint->Position.X);
 		canvas->SetTop(rect, startPoint->Position.Y);
 		canvas->Children->Append(rect);
 	}
-	else if (curShape == ellipse)
+	else if (sElem == ellipse)
 	{
 		ellip = ref new Shapes::Ellipse();
+		ellip->AddHandler(UIElement::TappedEvent, ref new TappedEventHandler(this, &DrawPage::SelectHandler), true);
 		ellip->Fill = ref new SolidColorBrush(selectedColor);
 		canvas->SetLeft(ellip, startPoint->Position.X);
 		canvas->SetTop(ellip, startPoint->Position.Y);
@@ -95,7 +103,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 	double w = max(pos->Position.X, startPoint->Position.X) - x;
 	double h = max(pos->Position.Y, startPoint->Position.Y) - y;
 
-	if (curShape == rectangle)
+	if (sElem == rectangle)
 	{
 		rect->Width = w;
 		rect->Height = h;
@@ -103,7 +111,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 		canvas->SetLeft(rect, x);
 		canvas->SetTop(rect, y);
 	}
-	else if (curShape == ellipse)
+	else if (sElem == ellipse)
 	{
 		ellip->Width = w;
 		ellip->Height = h;
@@ -115,14 +123,17 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
+	// returns if shape is not selected
+	if (sElem == color || sElem == del) return;
+
 	// define cmd object and add it to the commandstack
 	Command* cmd = nullptr;
 
-	if (curShape == rectangle) 
+	if (sElem == rectangle) 
 	{
 		cmd = new AddRectangleCommand(canvas, shapes, rect, selectedColor);
 	}
-	else if (curShape == ellipse)
+	else if (sElem == ellipse)
 	{
 		cmd = new AddEllipseCommand(canvas, shapes, ellip, selectedColor);
 	}
@@ -136,10 +147,14 @@ void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender,
 
 void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	if (sender->Equals(RectangleObject))
-		curShape = rectangle;
-	else if (sender->Equals(EllipseObject))
-		curShape = ellipse;
+	if (sender->Equals(RectangleSelect))
+		sElem = rectangle;
+	else if (sender->Equals(EllipseSelect))
+		sElem = ellipse;
+	else if (sender->Equals(ColorSelect))
+		sElem = color;
+	else if (sender->Equals(DeleteSelect))
+		sElem = del;
 }
 
 void c___GUI_Drawing::DrawPage::ColorPicker_ColorChanged(Windows::UI::Xaml::Controls::ColorPicker^ sender, Windows::UI::Xaml::Controls::ColorChangedEventArgs^ args)
@@ -155,4 +170,39 @@ void c___GUI_Drawing::DrawPage::UndoHandler(Platform::Object^ sender, Windows::U
 void c___GUI_Drawing::DrawPage::RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	commandStack.Redo();
+}
+
+void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs^ e)
+{
+	//returns if shape is selected
+	if (sElem == rectangle || sElem == ellipse) return;
+	
+	if (sElem == color)
+	{
+		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
+		
+		for (Shape* s : shapes) 
+		{
+			if (s->CheckShape(shape) == true)
+			{
+				Command* cmd = new ChangeColorCommand(s, selectedColor);
+				commandStack.Add(cmd);
+				return;
+			}
+		}		
+	}
+	else if (sElem == del)
+	{
+		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
+
+		for (Shape* s : shapes)
+		{
+			if (s->CheckShape(shape) == true)
+			{
+				Command* cmd = new DeleteCommand(canvas, shape);
+				commandStack.Add(cmd);
+				return;
+			}
+		}
+	}
 }
