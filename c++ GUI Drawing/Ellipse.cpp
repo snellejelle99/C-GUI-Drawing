@@ -20,3 +20,14 @@ bool Ellipse::CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape)
 	if (shape == this->ellipse) return true;
 	else return false;
 }
+
+std::string Ellipse::ToString()
+{
+	std::string string = "";
+	string += "ellip "
+		+ std::to_string(left) + " " + std::to_string(top) + " "
+		+ std::to_string(ellipse->Width) + " " + std::to_string(ellipse->Height) + " "
+		+ std::to_string(color.A) + std::to_string(color.R) + std::to_string(color.G) + std::to_string(color.B);
+
+	return string;
+}

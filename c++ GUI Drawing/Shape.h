@@ -1,6 +1,8 @@
 #ifndef SHAPE
 #define SHAPE
 
+#include <string>
+
 using namespace Windows::UI::Xaml::Media;
 
 class Shape
@@ -13,6 +15,7 @@ public:
 
 	virtual void ChangeColor(Windows::UI::Color newColor) = 0;
 	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape) = 0;
+	virtual std::string ToString() = 0;
 
 protected:
 	double left;

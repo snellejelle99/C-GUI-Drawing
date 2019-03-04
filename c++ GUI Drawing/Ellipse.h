@@ -11,6 +11,7 @@ public:
 
 	virtual void ChangeColor(Windows::UI::Color newColor);
 	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape);
+	virtual std::string ToString();
 
 private:
 	Windows::UI::Xaml::Shapes::Ellipse ^ellipse;
