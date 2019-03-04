@@ -11,12 +11,12 @@
 
 //shapes
 #include "Shape.h"
-#include "Rectangle.h"
-#include "Ellipse.h"
 
 //commands
 #include "Command.h"
 #include "ChangeColorCommand.h"
+#include "AddRectangleCommand.h"
+#include "AddEllipseCommand.h"
 
 //commandstack
 #include "CommandStack.h"
@@ -118,28 +118,20 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
-	// define shape object and add it to the commandstack
-	double left, top;
-	Shape* shape = nullptr;
+	// define cmd object and add it to the commandstack
+	Command* cmd = nullptr;
 
 	if (curShape == rectangle) 
 	{
-		left = canvas->GetLeft(rect);
-		top = canvas->GetTop(rect);
-		shape = new Rectangle(left, top, selectedColor, rect);
+		cmd = new AddRectangleCommand(canvas, shapes, rect, selectedColor);
 	}
 	else if (curShape == ellipse)
 	{
-		left = canvas->GetLeft(ellip);
-		top = canvas->GetTop(ellip);
-		shape = new Ellipse(left, top, selectedColor, ellip);
+		cmd = new AddEllipseCommand(canvas, shapes, ellip, selectedColor);
 	}
 
-	shapes.push_back(shape);
-
-	Command* cmd = new ChangeColorCommand(shape, Windows::UI::ColorHelper::FromArgb(255, 0, 0, 0));
-
 	commandStack.Add(cmd);
+	cmd = nullptr;
 
 
 	rect = nullptr;

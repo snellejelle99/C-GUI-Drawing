@@ -26,6 +26,9 @@
     <Filter Include="Command Stack">
       <UniqueIdentifier>{6cd48539-09f9-4aac-8b92-812719ba35c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Stratergy">
+      <UniqueIdentifier>{cc8bd238-5c2c-49fa-bfdb-1b0ba936338d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -52,6 +55,11 @@
     </ClCompile>
     <ClCompile Include="Saver.cpp">
       <Filter>Helpers</Filter>
+    <ClCompile Include="AddRectangleCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="AddEllipseCommand.cpp">
+      <Filter>Commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +87,14 @@
     </ClInclude>
     <ClInclude Include="Saver.h">
       <Filter>Helpers</Filter>
+    <ClInclude Include="Stratergy.h">
+      <Filter>Stratergy</Filter>
+    </ClInclude>
+    <ClInclude Include="AddRectangleCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="AddEllipseCommand.h">
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
