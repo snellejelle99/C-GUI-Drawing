@@ -1,4 +1,5 @@
 #include "AddEllipseCommand.h"
+#include "Ellipse.h"	
 
 AddEllipseCommand::AddEllipseCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, std::vector<Shape*> &shapes, Windows::UI::Xaml::Shapes::Ellipse ^ellip, Windows::UI::Color color) : canvas(canvas), color(color), ellip(ellip)
 {

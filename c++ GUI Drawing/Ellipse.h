@@ -2,8 +2,9 @@
 #define ELLIPSE
 
 #include "Shape.h"
+#include "ShapeAccept.h"
 
-class Ellipse : public Shape
+class Ellipse : public Shape, public ShapeAccept
 {
 public:
 	Ellipse(double left, double top, Windows::UI::Color color, Windows::UI::Xaml::Shapes::Ellipse ^ellipse);
@@ -11,6 +12,9 @@ public:
 
 	virtual void ChangeColor(Windows::UI::Color newColor);
 	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape);
+	virtual Windows::UI::Xaml::Shapes::Shape^ GetShape();
+	virtual void Accept(ShapeDeleteVisitor shapeDeleteVisitor);
+	virtual void Accept(ShapeAddVisitor shapeAddVisitor);
 	virtual std::string ToString();
 
 private:

@@ -160,6 +160,10 @@
     <ClInclude Include="MainPage.xaml.h">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="ShapeAccept.h" />
+    <ClInclude Include="ShapeAddVisitor.h" />
+    <ClInclude Include="ShapeDeleteVisitor.h" />
+    <ClInclude Include="ShapeVisitor.h" />
     <ClInclude Include="Stratergy.h" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +220,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="ShapeAddVisitor.cpp" />
+    <ClCompile Include="ShapeDeleteVisitor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

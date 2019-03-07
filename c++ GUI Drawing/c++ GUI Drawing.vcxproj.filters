@@ -35,6 +35,12 @@
     <ClCompile Include="Saver.cpp">
       <Filter>Saver</Filter>
     </ClCompile>
+    <ClCompile Include="ShapeDeleteVisitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeAddVisitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawPage.xaml.h" />
@@ -72,6 +78,18 @@
     <ClInclude Include="Saver.h">
       <Filter>Saver</Filter>
     </ClInclude>
+    <ClInclude Include="ShapeVisitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeDeleteVisitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeAccept.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeAddVisitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
@@ -108,6 +126,9 @@
     </Filter>
     <Filter Include="Saver">
       <UniqueIdentifier>{cf8750c3-054f-447e-994e-12472bc3ab55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Visitor">
+      <UniqueIdentifier>{810c9cb7-25b5-46bf-b930-f58173dcab0a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

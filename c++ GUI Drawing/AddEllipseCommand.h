@@ -2,11 +2,10 @@
 #define ADDELLIPCMD
 
 #include "Command.h"
-#include "Ellipse.h"
+#include "Shape.h"
 #include <vector>
 
-class AddEllipseCommand :
-	public Command
+class AddEllipseCommand : public Command
 {
 public:
 	AddEllipseCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, std::vector<Shape*> &shapes, Windows::UI::Xaml::Shapes::Ellipse ^ellip, Windows::UI::Color color);

@@ -1,4 +1,5 @@
 #include "AddRectangleCommand.h"
+#include "Rectangle.h"
 
 AddRectangleCommand::AddRectangleCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, std::vector<Shape*> &shapes, Windows::UI::Xaml::Shapes::Rectangle ^rect, Windows::UI::Color color) : canvas(canvas), color(color), rect(rect)
 {

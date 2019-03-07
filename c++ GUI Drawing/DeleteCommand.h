@@ -2,17 +2,18 @@
 #define DELCOMMAND
 
 #include "Command.h"
+#include "Shape.h"
 
 class DeleteCommand : public Command 
 {
 public:
-	DeleteCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, Windows::UI::Xaml::Shapes::Shape^ shape);
+	DeleteCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, Shape* shape);
 	~DeleteCommand();
 
 	virtual void Execute();
 	virtual void Undo();
 private:
-	Windows::UI::Xaml::Shapes::Shape^ shape;
+	Shape* shape;
 	Windows::UI::Xaml::Controls::Canvas ^canvas;
 };
 

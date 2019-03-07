@@ -2,7 +2,7 @@
 #define ADDRECTCMD
 
 #include "Command.h"
-#include "Rectangle.h"
+#include "Shape.h"
 #include <vector>
 
 class AddRectangleCommand : public Command

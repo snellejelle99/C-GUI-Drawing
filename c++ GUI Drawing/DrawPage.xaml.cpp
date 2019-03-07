@@ -42,7 +42,7 @@ using namespace Windows::UI::Xaml::Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-enum SelectedElem { rectangle, ellipse, color, del };
+enum SelectedElem { rectangle, ellipse, color, group, del };
 
 DrawPage::DrawPage()
 {
@@ -53,6 +53,7 @@ DrawPage::DrawPage()
 Windows::UI::Input::PointerPoint ^startPoint;
 Windows::UI::Xaml::Shapes::Rectangle ^rect;
 Windows::UI::Xaml::Shapes::Ellipse ^ellip;
+Shape* selectedShape = nullptr;
 
 Windows::UI::Color selectedColor; // currently selected color
 SelectedElem sElem = rectangle; // currently selected shape (default rectangle)
@@ -66,7 +67,7 @@ CMDStack commandStack = CMDStack();
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns if shape is not selected
-	if (sElem == color || sElem == del) return;
+	if (sElem == color || sElem == group || sElem == del) return;
 
 	startPoint = e->GetCurrentPoint(canvas);
 
@@ -127,12 +128,12 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns if shape is not selected
-	if (sElem == color || sElem == del) return;
+	if (sElem == color || sElem == group || sElem == del) return;
 
 	// define cmd object and add it to the commandstack
 	Command* cmd = nullptr;
 
-	if (sElem == rectangle) 
+	if (sElem == rectangle)
 	{
 		cmd = new AddRectangleCommand(canvas, shapes, rect, selectedColor);
 	}
@@ -157,6 +158,8 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 		sElem = ellipse;
 	else if (sender->Equals(ColorSelect))
 		sElem = color;
+	else if (sender->Equals(GroupSelect))
+		sElem = group;
 	else if (sender->Equals(DeleteSelect))
 		sElem = del;
 }
@@ -180,12 +183,12 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 {
 	//returns if shape is selected
 	if (sElem == rectangle || sElem == ellipse) return;
-	
+
 	if (sElem == color)
 	{
 		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
-		
-		for (Shape* s : shapes) 
+
+		for (Shape* s : shapes)
 		{
 			if (s->CheckShape(shape) == true)
 			{
@@ -193,7 +196,25 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 				commandStack.Add(cmd);
 				return;
 			}
-		}		
+		}
+	}
+	else if (sElem == group)
+	{
+		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
+
+		for (Shape* s : shapes)
+		{
+			if (s->CheckShape(shape) == true)
+			{
+				if (selectedShape != nullptr)
+				{
+					s->AddSubShape(selectedShape);
+					selectedShape = nullptr;
+				}
+				else selectedShape = s;
+				return;
+			}
+		}
 	}
 	else if (sElem == del)
 	{
@@ -203,7 +224,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 		{
 			if (s->CheckShape(shape) == true)
 			{
-				Command* cmd = new DeleteCommand(canvas, shape);
+				Command* cmd = new DeleteCommand(canvas, s);
 				commandStack.Add(cmd);
 				return;
 			}

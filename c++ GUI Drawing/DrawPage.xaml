@@ -32,6 +32,11 @@
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" />
                 </AppBarButton.Icon>
             </AppBarButton>
+            <AppBarButton Label="Group" Name="GroupSelect" Click="ObjectToggle">
+                <AppBarButton.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF156;" />
+                </AppBarButton.Icon>
+            </AppBarButton>
             <AppBarButton Label="Delete" Name="DeleteSelect" Click="ObjectToggle">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" />
@@ -43,7 +48,7 @@
             <ColorPicker IsColorSliderVisible="True" IsColorChannelTextInputVisible="True" IsHexInputVisible="False" IsAlphaEnabled="True" IsAlphaSliderVisible="True" IsAlphaTextInputVisible="True" ColorChanged="ColorPicker_ColorChanged"/>
         </StackPanel>
 
-        <Canvas x:Name="canvas" HorizontalAlignment="Stretch" Background="Transparent" RelativePanel.Below="TopBar" RelativePanel.LeftOf="SideBar" RelativePanel.RightOf="Toolbar" RelativePanel.AlignBottomWithPanel="True" PointerPressed="canvas_PointerPressed" PointerMoved="canvas_PointerMoved" PointerReleased="canvas_PointerReleased"/>
+        <Canvas x:Name="canvas" HorizontalAlignment="Stretch" RelativePanel.Below="TopBar" RelativePanel.LeftOf="SideBar" RelativePanel.RightOf="Toolbar" RelativePanel.AlignBottomWithPanel="True" Background="Transparent" PointerPressed="canvas_PointerPressed" PointerMoved="canvas_PointerMoved" PointerReleased="canvas_PointerReleased"/>
 
     </RelativePanel>
 
