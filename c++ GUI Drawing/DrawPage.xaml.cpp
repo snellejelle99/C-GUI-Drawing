@@ -20,6 +20,7 @@
 #include "AddRectangleCommand.h"
 #include "AddEllipseCommand.h"
 #include "DeleteCommand.h"
+#include "GroupCommand.h"
 
 //commandstack
 #include "CommandStack.h"
@@ -208,7 +209,8 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 			{
 				if (selectedShape != nullptr)
 				{
-					s->AddSubShape(selectedShape);
+					Command* cmd = new GroupCommand(s, selectedShape);
+					commandStack.Add(cmd);
 					selectedShape = nullptr;
 				}
 				else selectedShape = s;
