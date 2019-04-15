@@ -41,6 +41,9 @@
     <ClCompile Include="ShapeAddVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="GroupCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawPage.xaml.h" />
@@ -89,6 +92,9 @@
     </ClInclude>
     <ClInclude Include="ShapeAddVisitor.h">
       <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="GroupCommand.h">
+      <Filter>Commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
