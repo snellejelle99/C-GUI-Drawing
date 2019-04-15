@@ -153,16 +153,37 @@ void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender,
 
 void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+	DrawPage::RectangleSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
+	DrawPage::EllipseSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
+	DrawPage::ColorSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
+	DrawPage::GroupSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
+	DrawPage::DeleteSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
+
 	if (sender->Equals(RectangleSelect))
+	{
 		sElem = rectangle;
+		DrawPage::RectangleSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
+	}
 	else if (sender->Equals(EllipseSelect))
+	{
 		sElem = ellipse;
+		DrawPage::EllipseSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
+	}
 	else if (sender->Equals(ColorSelect))
+	{
 		sElem = color;
+		DrawPage::ColorSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
+	}
 	else if (sender->Equals(GroupSelect))
+	{
 		sElem = group;
+		DrawPage::GroupSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
+	}
 	else if (sender->Equals(DeleteSelect))
+	{
 		sElem = del;
+		DrawPage::DeleteSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
+	}
 }
 
 void c___GUI_Drawing::DrawPage::ColorPicker_ColorChanged(Windows::UI::Xaml::Controls::ColorPicker^ sender, Windows::UI::Xaml::Controls::ColorChangedEventArgs^ args)

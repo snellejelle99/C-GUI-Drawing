@@ -50,7 +50,6 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.xaml.h" />
     <ClInclude Include="MainPage.xaml.h" />
-    <ClInclude Include="Stratergy.h" />
     <ClInclude Include="AddEllipseCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
@@ -95,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="GroupCommand.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="Stratergy.h">
+      <Filter>Strategy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
