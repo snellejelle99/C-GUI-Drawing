@@ -19,7 +19,7 @@ public:
 	virtual void ChangeColor(Windows::UI::Color newColor) = 0;
 	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape) = 0;
 	virtual Windows::UI::Xaml::Shapes::Shape^ GetShape() = 0;
-	virtual std::string ToString() = 0;
+	virtual Platform::String^ ToString() = 0;
 
 protected:
 	double left;

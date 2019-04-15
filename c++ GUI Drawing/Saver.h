@@ -1,6 +1,7 @@
 #ifndef SAVER
 #define SAVER
 
+#include "pch.h"
 #include <vector>
 #include <iostream>
 #include <fstream>
@@ -9,6 +10,14 @@
 
 #include "Shape.h"
 
+using namespace concurrency;
+using namespace Platform;
+using namespace Windows::Storage;
+using namespace Windows::Storage::Pickers;
+using namespace Windows::Storage::Provider;
+using namespace Windows::UI::Xaml;
+using namespace Windows::UI::Xaml::Controls;
+using namespace Windows::UI::Xaml::Navigation;
 
 class Saver
 {
@@ -26,7 +35,8 @@ private:
 	Saver& operator=(Saver const&) {};  // assignment operator is private
 
 	static Saver * instance;
-	std::experimental::filesystem::path savePath;
+
+	StorageFile^ saveFile = nullptr;
 };
 
 

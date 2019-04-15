@@ -52,13 +52,17 @@ void Rectangle::Accept(ShapeAddVisitor shapeAddVisitor)
 	shapeAddVisitor.Visit(this);
 }
 
-std::string Rectangle::ToString()
+Platform::String^ Rectangle::ToString()
 {
-	std::string string = "";
+	Platform::String^ string = "";
 	string += "rect "
-		+ std::to_string(left) + " " + std::to_string(top) + " "
-		+ std::to_string(rect->Width) + " " + std::to_string(rect->Height) + " "
-		+ std::to_string(color.A) + std::to_string(color.R) + std::to_string(color.G) + std::to_string(color.B);
+		+ left + " " + top + " "
+		+ rect->Width + " " + rect->Height + " "
+		+ color.A + " " + color.R + " " + color.G + " " + color.B;
+
+	/*for (Shape* sh : subShapes) {
+		string += "\n	" + sh->ToString();
+	}*/
 
 	return string;
 }
