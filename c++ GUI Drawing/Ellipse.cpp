@@ -52,13 +52,13 @@ void Ellipse::Accept(ShapeAddVisitor shapeAddVisitor)
 	shapeAddVisitor.Visit(this);
 }
 
-std::string Ellipse::ToString()
+Platform::String^ Ellipse::ToString()
 {
-	std::string string = "";
+	Platform::String^ string = "";
 	string += "ellip "
-		+ std::to_string(left) + " " + std::to_string(top) + " "
-		+ std::to_string(ellipse->Width) + " " + std::to_string(ellipse->Height) + " "
-		+ std::to_string(color.A) + std::to_string(color.R) + std::to_string(color.G) + std::to_string(color.B);
+		+ left + " " + top + " "
+		+ ellipse->Width + " " + ellipse->Height + " "
+		+ color.A + color.R + color.G + color.B;
 
 	return string;
 }
