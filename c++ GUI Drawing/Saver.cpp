@@ -28,6 +28,15 @@ void Saver::SetPath()
 
 int Saver::SaveCanvas(std::vector<Shape*>shapes)
 {
+	Platform::String^ savestring = [&shapes]()->Platform::String^{
+		Platform::String^ string;
+		for(Shape* sh : shapes)
+		{
+			string += sh->ToString() + "\n";
+		}
+		return string;
+	}();
+
 	//try {
 	if (saveFile == nullptr) {
 
@@ -42,7 +51,7 @@ int Saver::SaveCanvas(std::vector<Shape*>shapes)
 		savePicker->SuggestedFileName = "New Document";
 
 		//deploy savepicker and retrieve file
-		create_task(savePicker->PickSaveFileAsync()).then([this, shapes](StorageFile^ file)
+		create_task(savePicker->PickSaveFileAsync()).then([this, savestring](StorageFile^ file)
 		{
 			if (file != nullptr)
 			{
@@ -52,7 +61,7 @@ int Saver::SaveCanvas(std::vector<Shape*>shapes)
 				// Prevent updates to the remote version of the file until we finish making changes and call CompleteUpdatesAsync.
 				CachedFileManager::DeferUpdates(file);
 				// write to file
-				create_task(FileIO::WriteTextAsync(file, shapes[0]->ToString())).then([this, file]() //TODO: add meer dan eerste rectangle
+				create_task(FileIO::WriteTextAsync(file, savestring)).then([this, file]()
 				{
 					// Let Windows know that we're finished changing the file so the other app can update the remote version of the file.
 					// Completing updates may require Windows to ask for user input.
@@ -84,7 +93,7 @@ int Saver::SaveCanvas(std::vector<Shape*>shapes)
 		// Prevent updates to the remote version of the file until we finish making changes and call CompleteUpdatesAsync.
 		CachedFileManager::DeferUpdates(file);
 		// write to file
-		create_task(FileIO::WriteTextAsync(file, "xxxxxxxxxxx")).then([this, file]()
+		create_task(FileIO::WriteTextAsync(file, savestring)).then([this, file]()
 		{
 			// Let Windows know that we're finished changing the file so the other app can update the remote version of the file.
 			// Completing updates may require Windows to ask for user input.
