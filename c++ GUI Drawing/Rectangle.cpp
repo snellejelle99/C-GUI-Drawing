@@ -26,6 +26,7 @@ Windows::UI::Xaml::Shapes::Shape^ Rectangle::GetShape()
 	return rect;
 }
 
+//implementation of shapeAccept for deleteVisitor
 void Rectangle::Accept(ShapeDeleteVisitor shapeDeleteVisitor)
 {
 	for (int i = 0; i < subShapes.size(); i++)
@@ -39,6 +40,7 @@ void Rectangle::Accept(ShapeDeleteVisitor shapeDeleteVisitor)
 	shapeDeleteVisitor.Visit(this);
 }
 
+//implementation of shapeAccept for addVisitor
 void Rectangle::Accept(ShapeAddVisitor shapeAddVisitor)
 {
 	for (int i = 0; i < subShapes.size(); i++)

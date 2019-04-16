@@ -1,11 +1,10 @@
 #ifndef SHAPEVISITOR
 #define SHAPEVISITOR
 
-//#include "Rectangle.h"
-//#include "Ellipse.h"
 class Rectangle;
 class Ellipse;
 
+//interface that defines the Visit for Rectangle and Ellipse
 class ShapeVisitor
 {
 public:

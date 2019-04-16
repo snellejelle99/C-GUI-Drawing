@@ -3,9 +3,8 @@
 
 #include "ShapeDeleteVisitor.h"
 #include "ShapeAddVisitor.h"
-//class ShapeDeleteVisitor;
-//class ShapeAddVisitor;
 
+//interface that defines the Accept for shapeDeleteVisitor and ShapeAddVisitor
 class ShapeAccept
 {
 public:

@@ -10,6 +10,7 @@ ShapeDeleteVisitor::~ShapeDeleteVisitor()
 {
 }
 
+//implementation of ShapeDeleteVisitor for Rectangle
 void ShapeDeleteVisitor::Visit(Rectangle* shape)
 {
 	unsigned int index = 0;
@@ -17,6 +18,7 @@ void ShapeDeleteVisitor::Visit(Rectangle* shape)
 	canvas->Children->RemoveAt(index);
 }
 
+//implementation of ShapeDeleteVisitor for Ellipse
 void ShapeDeleteVisitor::Visit(Ellipse* shape)
 {
 	unsigned int index = 0;
