@@ -52,7 +52,7 @@ int Saver::SaveCanvas(std::vector<Shape*>shapes)
 				// Prevent updates to the remote version of the file until we finish making changes and call CompleteUpdatesAsync.
 				CachedFileManager::DeferUpdates(file);
 				// write to file
-				create_task(FileIO::WriteTextAsync(file, shapes[0]->ToString())).then([this, file]()
+				create_task(FileIO::WriteTextAsync(file, shapes[0]->ToString())).then([this, file]() //TODO: add meer dan eerste rectangle
 				{
 					// Let Windows know that we're finished changing the file so the other app can update the remote version of the file.
 					// Completing updates may require Windows to ask for user input.
