@@ -60,9 +60,9 @@ Platform::String^ Rectangle::ToString()
 		+ rect->Width + " " + rect->Height + " "
 		+ color.A + " " + color.R + " " + color.G + " " + color.B;
 
-	/*for (Shape* sh : subShapes) {
+	for (Shape* sh : subShapes) {
 		string += "\n	" + sh->ToString();
-	}*/
+	}
 
 	return string;
 }

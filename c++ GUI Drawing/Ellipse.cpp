@@ -58,7 +58,11 @@ Platform::String^ Ellipse::ToString()
 	string += "ellip "
 		+ left + " " + top + " "
 		+ ellipse->Width + " " + ellipse->Height + " "
-		+ color.A + color.R + color.G + color.B;
+		+ color.A + " " + color.R + " " + color.G + " " + color.B;
+
+	for (Shape* sh : subShapes) {
+		string += "\n	" + sh->ToString();
+	}
 
 	return string;
 }
