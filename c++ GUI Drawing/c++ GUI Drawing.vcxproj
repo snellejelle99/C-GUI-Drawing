@@ -165,7 +165,6 @@
     <ClInclude Include="ShapeAddVisitor.h" />
     <ClInclude Include="ShapeDeleteVisitor.h" />
     <ClInclude Include="ShapeVisitor.h" />
-    <ClInclude Include="Stratergy.h" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

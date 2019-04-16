@@ -95,9 +95,6 @@
     <ClInclude Include="GroupCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
-    <ClInclude Include="Stratergy.h">
-      <Filter>Strategy</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
@@ -125,9 +122,6 @@
     </Filter>
     <Filter Include="Objects">
       <UniqueIdentifier>{0f33de58-58cd-4a5d-96e8-e8015f2054b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Strategy">
-      <UniqueIdentifier>{9158ffea-e0ed-46d9-b898-93d257c05ec4}</UniqueIdentifier>
     </Filter>
     <Filter Include="CommandStack">
       <UniqueIdentifier>{e85707ab-f5e3-46f4-a74d-5aef89e08343}</UniqueIdentifier>

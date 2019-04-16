@@ -3,6 +3,7 @@
 
 #include "ShapeVisitor.h"
 
+//ShapeDeleteVisitor class defenition
 class ShapeDeleteVisitor : public ShapeVisitor
 {
 public:
