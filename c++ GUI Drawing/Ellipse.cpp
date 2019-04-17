@@ -31,7 +31,7 @@ void Ellipse::Accept(ShapeDeleteVisitor shapeDeleteVisitor)
 	for (int i = 0; i < subShapes.size(); i++)
 	{
 		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
-		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
+		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
 
 		if (rectShape) rectShape->Accept(shapeDeleteVisitor);
 		else if (ellipShape) ellipShape->Accept(shapeDeleteVisitor);
@@ -45,7 +45,7 @@ void Ellipse::Accept(ShapeAddVisitor shapeAddVisitor)
 	for (int i = 0; i < subShapes.size(); i++)
 	{
 		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
-		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
+		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
 
 		if (rectShape) rectShape->Accept(shapeAddVisitor);
 		else if (ellipShape) ellipShape->Accept(shapeAddVisitor);

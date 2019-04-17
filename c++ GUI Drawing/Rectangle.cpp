@@ -6,11 +6,6 @@ Rectangle::Rectangle(double left, double top, Windows::UI::Color color, Windows:
 
 }
 
-//Rectangle::Rectangle(const Rectangle & oldRectangle) : Shape(oldRectangle.left, oldRectangle.top, oldRectangle.color), rect(oldRectangle.rect)
-//{
-//	subShapes = oldRectangle.subShapes;
-//}
-
 Rectangle::~Rectangle()
 {
 }
