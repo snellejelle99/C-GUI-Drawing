@@ -163,6 +163,7 @@
     </ClInclude>
     <ClInclude Include="ShapeAccept.h" />
     <ClInclude Include="ShapeAddVisitor.h" />
+    <ClInclude Include="ShapeDecorator.h" />
     <ClInclude Include="ShapeDeleteVisitor.h" />
     <ClInclude Include="ShapeVisitor.h" />
   </ItemGroup>
@@ -222,6 +223,7 @@
     </ClCompile>
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="ShapeAddVisitor.cpp" />
+    <ClCompile Include="ShapeDecorator.cpp" />
     <ClCompile Include="ShapeDeleteVisitor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
