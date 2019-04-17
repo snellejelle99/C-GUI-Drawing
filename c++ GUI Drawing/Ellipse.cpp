@@ -35,6 +35,7 @@ void Ellipse::Accept(ShapeDeleteVisitor shapeDeleteVisitor)
 
 		if (rectShape) rectShape->Accept(shapeDeleteVisitor);
 		else if (ellipShape) ellipShape->Accept(shapeDeleteVisitor);
+		i--; //subshape deleted, correction for index shift.
 	}
 	shapeDeleteVisitor.Visit(this);
 }

@@ -15,7 +15,11 @@ void ShapeDeleteVisitor::Visit(Rectangle* shape)
 {
 	unsigned int index = 0;
 	canvas->Children->IndexOf(shape->GetShape(), &index);
-	canvas->Children->RemoveAt(index);
+	if (index < std::numeric_limits<unsigned int>::max())
+	{
+		canvas->Children->RemoveAt(index);
+	}
+	shape->DellFromParent();
 }
 
 //implementation of ShapeDeleteVisitor for Ellipse
@@ -24,5 +28,6 @@ void ShapeDeleteVisitor::Visit(Ellipse* shape)
 	unsigned int index = 0;
 	canvas->Children->IndexOf(shape->GetShape(), &index);
 	canvas->Children->RemoveAt(index);
+	shape->DellFromParent();
 }
 

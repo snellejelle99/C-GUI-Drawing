@@ -15,6 +15,10 @@ public:
 	Windows::UI::Color GetColor(); //returns the color of the shape
 	void AddSubShape(Shape* subShape);
 	void DelSubShape(Shape* subShape);
+	const std::vector<Shape*> GetSubShapes();
+	void AddParent(Shape* pShape);
+	void DellFromParent();
+	const std::vector<Shape*> GetParentShapes();
 
 	virtual void ChangeColor(Windows::UI::Color newColor) = 0; //changes the color of the shape
 	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape) = 0;
@@ -25,6 +29,7 @@ protected:
 	double left;
 	double top;
 	Windows::UI::Color color;
+	std::vector<Shape*> parentShapes;
 	std::vector<Shape*> subShapes;
 };
 

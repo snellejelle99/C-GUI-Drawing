@@ -14,6 +14,7 @@ public:
 	virtual void Undo();
 private:
 	Shape* shape;
+	std::vector<Shape*> savedSubShapes; //subshapes list from shapes before deletecommand is executed (used for undo)
 	Windows::UI::Xaml::Controls::Canvas ^canvas;
 };
 

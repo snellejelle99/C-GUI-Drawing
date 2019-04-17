@@ -6,6 +6,11 @@ Rectangle::Rectangle(double left, double top, Windows::UI::Color color, Windows:
 
 }
 
+//Rectangle::Rectangle(const Rectangle & oldRectangle) : Shape(oldRectangle.left, oldRectangle.top, oldRectangle.color), rect(oldRectangle.rect)
+//{
+//	subShapes = oldRectangle.subShapes;
+//}
+
 Rectangle::~Rectangle()
 {
 }
@@ -36,6 +41,7 @@ void Rectangle::Accept(ShapeDeleteVisitor shapeDeleteVisitor)
 		
 		if (rectShape) rectShape->Accept(shapeDeleteVisitor);
 		else if (ellipShape) ellipShape->Accept(shapeDeleteVisitor);
+		i--; //subshape deleted, correction for index shift.
 	}
 	shapeDeleteVisitor.Visit(this);
 }
