@@ -7,7 +7,7 @@
 class GroupCommand : public Command
 {
 public:
-	GroupCommand(Shape* shape, Shape* subShape);
+	GroupCommand(Shape* shape, Shape* subShape, std::vector<Shape*> &shapes);
 	~GroupCommand();
 
 	virtual void Execute();
@@ -15,6 +15,7 @@ public:
 private:
 	Shape* shape;
 	Shape* subShape;
+	std::vector<Shape*> &shapes;
 };
 
 #endif 

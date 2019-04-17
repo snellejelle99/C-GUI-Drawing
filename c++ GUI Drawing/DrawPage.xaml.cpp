@@ -230,7 +230,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 			{
 				if (selectedShape != nullptr)
 				{
-					Command* cmd = new GroupCommand(s, selectedShape);
+					Command* cmd = new GroupCommand(s, selectedShape, shapes);
 					commandStack.Add(cmd);
 					selectedShape = nullptr;
 				}
@@ -247,7 +247,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 		{
 			if (s->CheckShape(shape) == true)
 			{
-				Command* cmd = new DeleteCommand(canvas, s);
+				Command* cmd = new DeleteCommand(canvas, s, shapes);
 				commandStack.Add(cmd);
 				return;
 			}

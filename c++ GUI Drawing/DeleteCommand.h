@@ -7,7 +7,7 @@
 class DeleteCommand : public Command 
 {
 public:
-	DeleteCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, Shape* shape);
+	DeleteCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, Shape* shape, std::vector<Shape*> &shapes);
 	~DeleteCommand();
 
 	virtual void Execute();
@@ -15,6 +15,7 @@ public:
 private:
 	Shape* shape;
 	std::vector<Shape*> savedSubShapes; //subshapes list from shapes before deletecommand is executed (used for undo)
+	std::vector<Shape*> &shapes; //refrence to top-layer shape list
 	Windows::UI::Xaml::Controls::Canvas ^canvas;
 };
 
