@@ -44,6 +44,9 @@
     <ClCompile Include="GroupCommand.cpp">
       <Filter>Commands</Filter>
     </ClCompile>
+    <ClCompile Include="ShapeDecorator.cpp">
+      <Filter>Decorators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawPage.xaml.h" />
@@ -95,6 +98,9 @@
     <ClInclude Include="GroupCommand.h">
       <Filter>Commands</Filter>
     </ClInclude>
+    <ClInclude Include="ShapeDecorator.h">
+      <Filter>Decorators</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
@@ -131,6 +137,9 @@
     </Filter>
     <Filter Include="Visitor">
       <UniqueIdentifier>{810c9cb7-25b5-46bf-b930-f58173dcab0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Decorators">
+      <UniqueIdentifier>{b53d80ce-7f8a-436d-bdc7-05c3d8d03df2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
