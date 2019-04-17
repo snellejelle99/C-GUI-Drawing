@@ -17,6 +17,7 @@ private:
 	bool isExecuted = false;
 	Windows::UI::Xaml::Controls::Canvas ^canvas;
 	Shape* shape;
+	std::vector<Shape*> &shapes;
 	Windows::UI::Xaml::Shapes::Ellipse ^ellip;
 	Windows::UI::Color color;
 };

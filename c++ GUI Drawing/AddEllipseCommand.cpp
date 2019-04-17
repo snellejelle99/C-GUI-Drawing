@@ -1,7 +1,8 @@
 #include "AddEllipseCommand.h"
 #include "Ellipse.h"	
+#include <algorithm>
 
-AddEllipseCommand::AddEllipseCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, std::vector<Shape*> &shapes, Windows::UI::Xaml::Shapes::Ellipse ^ellip, Windows::UI::Color color) : canvas(canvas), color(color), ellip(ellip)
+AddEllipseCommand::AddEllipseCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, std::vector<Shape*> &shapes, Windows::UI::Xaml::Shapes::Ellipse ^ellip, Windows::UI::Color color) : canvas(canvas), color(color), ellip(ellip), shapes(shapes)
 {
 	double left = canvas->GetLeft(ellip);
 	double top = canvas->GetTop(ellip);
@@ -24,4 +25,5 @@ void AddEllipseCommand::Undo()
 	unsigned int index = 0;
 	canvas->Children->IndexOf(ellip, &index);
 	canvas->Children->RemoveAt(index);
+	shapes.erase(remove(shapes.begin(), shapes.end(), shape), shapes.end());
 }

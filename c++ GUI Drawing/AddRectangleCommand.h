@@ -17,6 +17,7 @@ private:
 	bool isExecuted = false;
 	Windows::UI::Xaml::Controls::Canvas ^canvas;
 	Shape* shape;
+	std::vector<Shape*> &shapes;
 	Windows::UI::Xaml::Shapes::Rectangle ^rect;
 	Windows::UI::Color color;
 };
