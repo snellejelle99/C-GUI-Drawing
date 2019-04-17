@@ -25,8 +25,16 @@ void DeleteCommand::Execute()
 
 void DeleteCommand::Undo()
 {
-	for (Shape* ss : savedSubShapes) shape->AddSubShape(ss);
+	//for (Shape* ss : savedSubShapes) shape->AddSubShape(ss);
 	for (Shape* ps : shape->GetParentShapes()) ps->AddSubShape(shape);
+
+	for (Shape* subShape : savedSubShapes) 
+	{
+		for(Shape* parent : subShape->GetParentShapes())
+		{
+			parent->AddSubShape(subShape);
+		}
+	}
 
 	ShapeAddVisitor shapeAddVisitor = ShapeAddVisitor(canvas);
 	Rectangle* rectShape = dynamic_cast<Rectangle*>(shape); // Will return nullptr if rectShape isn't a Rectangle.

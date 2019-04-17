@@ -33,9 +33,22 @@ void Shape::DelSubShape(Shape * subShape)
 	}
 }
 
+//return a list containing every shape beneath this shape recursively
 const std::vector<Shape*> Shape::GetSubShapes()
 {
-	return subShapes;
+	std::vector<Shape*> result;
+	if (subShapes.size() == 0) return result;
+	else 
+	{
+		for (Shape* sh : subShapes)
+		{
+			result.push_back(sh);
+			std::vector<Shape*> addition = sh->GetSubShapes();
+			result.insert(result.end(), addition.begin(), addition.end());
+		}
+	}
+
+	return result;
 }
 
 void Shape::AddParent(Shape * pShape)

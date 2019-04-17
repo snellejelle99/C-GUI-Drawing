@@ -15,7 +15,7 @@ public:
 	Windows::UI::Color GetColor(); //returns the color of the shape
 	void AddSubShape(Shape* subShape);
 	void DelSubShape(Shape* subShape);
-	const std::vector<Shape*> GetSubShapes();
+	const std::vector<Shape*> GetSubShapes(); //return a list containing every shape beneath this shape recursively
 	void AddParent(Shape* pShape);
 	void DellFromParent();
 	const std::vector<Shape*> GetParentShapes();
