@@ -16,9 +16,9 @@ public:
 	void AddSubShape(Shape* subShape);
 	void DelSubShape(Shape* subShape);
 	const std::vector<Shape*> GetSubShapes(); //return a list containing every shape beneath this shape recursively
-	void AddParent(Shape* pShape);
-	void DellFromParent();
-	const std::vector<Shape*> GetParentShapes();
+	
+	void DellFromParent(); //deletes this shape in the subshapes list of the parent
+	const std::vector<Shape*> GetParentShapes(); //returns the list of parent shapes
 
 	virtual void ChangeColor(Windows::UI::Color newColor) = 0; //changes the color of the shape
 	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape) = 0;
@@ -31,6 +31,9 @@ protected:
 	Windows::UI::Color color;
 	std::vector<Shape*> parentShapes;
 	std::vector<Shape*> subShapes;
+
+	//functions
+	void AddParent(Shape* pShape); //adds a shape to the parent list
 };
 
 
