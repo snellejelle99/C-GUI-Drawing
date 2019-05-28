@@ -82,6 +82,7 @@ void Ellipse::Accept(ChangeGroupColorBackVisitor changeGroupColorBackVisitor)
 
 Platform::String^ Ellipse::ToString(int counter)
 {
+	counter++;
 	Platform::String^ string = "";
 	string += "ellip "
 		+ left + " " + top + " "
@@ -90,10 +91,10 @@ Platform::String^ Ellipse::ToString(int counter)
 
 	for (Shape* sh : subShapes) {
 		string += "\n";
-		for (int i = 0; i <= counter; i++) {
+		for (int i = 0; i < counter; i++) {
 			string += " ";
-		}
-		string += sh->ToString(counter++);
+		}		
+		string += sh->ToString(counter);
 	}
 
 	return string;
