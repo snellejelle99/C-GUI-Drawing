@@ -14,6 +14,7 @@
             <AppBarButton Name="Redo" Icon="Forward" Label="Redo" Click="RedoHandler"/>
             <AppBarButton Icon="Add" Label="Add"/>
             <AppBarButton Icon="Save" Label="Save" Click="SaveHandler"/>
+            <AppBarButton Icon="OpenFile" Label="Load" Click="LoadHandler"/>
         </StackPanel>
 
         <StackPanel x:Name="Toolbar" Orientation="Vertical" Background="LightGray" RelativePanel.Below="TopBar" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True">

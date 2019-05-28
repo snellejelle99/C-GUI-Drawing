@@ -17,7 +17,6 @@
         <StackPanel HorizontalAlignment="Center" Margin="0,100,0,0" VerticalAlignment="Top" Orientation="Vertical">
             <TextBlock Margin="0,0,0,0" Text="C++ Graphics Editor" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="72"/>
             <Button x:Name="New_Drawing_BT" Content="New Drawing" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48" Margin="0,50,0,0" AutomationProperties.Name="New_Drawing_BT" Click="New_Drawing_BT_Click"/>
-            <Button x:Name="Load_Drawing_BT" Content="Load Drawing" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="48" Margin="0,50,0,0" AutomationProperties.Name="New_Drawing_BT"/>
         </StackPanel>
 
     </Grid>

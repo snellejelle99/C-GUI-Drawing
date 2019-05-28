@@ -149,6 +149,7 @@
     <ClInclude Include="CommandStack.h" />
     <ClInclude Include="DeleteCommand.h" />
     <ClInclude Include="GroupCommand.h" />
+    <ClInclude Include="Loader.h" />
     <ClInclude Include="Saver.h" />
     <ClInclude Include="DrawPage.xaml.h">
       <DependentUpon>DrawPage.xaml</DependentUpon>
@@ -208,6 +209,7 @@
     <ClCompile Include="CommandStack.cpp" />
     <ClCompile Include="DeleteCommand.cpp" />
     <ClCompile Include="GroupCommand.cpp" />
+    <ClCompile Include="Loader.cpp" />
     <ClCompile Include="Saver.cpp" />
     <ClCompile Include="DrawPage.xaml.cpp">
       <DependentUpon>DrawPage.xaml</DependentUpon>
