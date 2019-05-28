@@ -15,6 +15,8 @@ public:
 	Windows::UI::Color GetColor(); //returns the color of the shape
 	void AddSubShape(Shape* subShape);
 	void DelSubShape(Shape* subShape);
+	std::vector<double> getTopLeft();
+	void setTopLeft(double left, double top);
 	const std::vector<Shape*> GetSubShapes(); //return a list containing every shape beneath this shape recursively
 	
 	void DellFromParent(); //deletes this shape in the subshapes list of the parent

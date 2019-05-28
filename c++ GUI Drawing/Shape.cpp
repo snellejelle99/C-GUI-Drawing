@@ -33,6 +33,20 @@ void Shape::DelSubShape(Shape * subShape)
 	}
 }
 
+std::vector<double> Shape::getTopLeft()
+{
+	std::vector<double> tl;
+	tl.push_back(left);
+	tl.push_back(top);
+	return tl;
+}
+
+void Shape::setTopLeft(double left, double top)
+{
+	this->left = left;
+	this->top = top;
+}
+
 //return a list containing every shape beneath this shape recursively
 const std::vector<Shape*> Shape::GetSubShapes()
 {
