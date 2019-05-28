@@ -53,7 +53,10 @@
     <ClCompile Include="ChangeGroupColorVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
-    <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="ChangeGroupColorBackVisitor.cpp" />
+    <ClCompile Include="Loader.cpp">
+      <Filter>Loader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawPage.xaml.h" />
@@ -114,7 +117,10 @@
     <ClInclude Include="ChangeGroupColorVisitor.h">
       <Filter>Visitor</Filter>
     </ClInclude>
-    <ClInclude Include="Loader.h" />
+    <ClInclude Include="ChangeGroupColorBackVisitor.h" />
+    <ClInclude Include="Loader.h">
+      <Filter>Loader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
