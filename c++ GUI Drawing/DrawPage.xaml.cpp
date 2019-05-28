@@ -282,6 +282,24 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 				else selectedShape = s;
 				return;
 			}
+			else
+			{
+				std::vector<Shape*> sshapes = s->GetSubShapes();
+				for (Shape* s : sshapes)
+				{
+					if (s->CheckShape(shape) == true)
+					{
+						if (selectedShape != nullptr)
+						{
+							Command* cmd = new GroupCommand(s, selectedShape, shapes);
+							commandStack.Add(cmd);
+							selectedShape = nullptr;
+						}
+						else selectedShape = s;
+						return;
+					}
+				}
+			}
 		}
 	}
 	else if (sElem == del)

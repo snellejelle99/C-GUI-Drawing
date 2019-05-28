@@ -47,6 +47,12 @@
     <ClCompile Include="ShapeDecorator.cpp">
       <Filter>Decorators</Filter>
     </ClCompile>
+    <ClCompile Include="ChangeGroupColorCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeGroupColorVisitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawPage.xaml.h" />
@@ -100,6 +106,12 @@
     </ClInclude>
     <ClInclude Include="ShapeDecorator.h">
       <Filter>Decorators</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeGroupColorCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeGroupColorVisitor.h">
+      <Filter>Visitor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
