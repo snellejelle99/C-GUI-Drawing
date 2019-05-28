@@ -43,7 +43,7 @@ using namespace Windows::UI::Xaml::Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-enum SelectedElem { rectangle, ellipse, color, group, del };
+enum SelectedElem { rectangle, ellipse, cssingle, csgroup, group, del };
 
 DrawPage::DrawPage()
 {
@@ -68,7 +68,7 @@ CMDStack commandStack = CMDStack();
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns if shape is not selected
-	if (sElem == color || sElem == group || sElem == del) return;
+	if (sElem == cssingle || sElem== csgroup || sElem == group || sElem == del) return;
 
 	startPoint = e->GetCurrentPoint(canvas);
 
@@ -129,7 +129,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns if shape is not selected
-	if (sElem == color || sElem == group || sElem == del) return;
+	if (sElem == cssingle || sElem == csgroup || sElem == group || sElem == del) return;
 
 	// define cmd object and add it to the commandstack
 	Command* cmd = nullptr;
@@ -169,9 +169,14 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 		sElem = ellipse;
 		DrawPage::EllipseSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
 	}
-	else if (sender->Equals(ColorSelect))
+	else if (sender->Equals(CSSingle))
 	{
-		sElem = color;
+		sElem = cssingle;
+		DrawPage::ColorSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
+	}
+	else if (sender->Equals(CSGroup))
+	{
+		sElem = csgroup;
 		DrawPage::ColorSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
 	}
 	else if (sender->Equals(GroupSelect))
@@ -206,7 +211,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 	//returns if shape is selected
 	if (sElem == rectangle || sElem == ellipse) return;
 
-	if (sElem == color)
+	if (sElem == cssingle)
 	{
 		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
 
@@ -217,6 +222,46 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 				Command* cmd = new ChangeColorCommand(s, selectedColor);
 				commandStack.Add(cmd);
 				return;
+			}
+			else
+			{
+				std::vector<Shape*> sshapes = s->GetSubShapes();
+				for (Shape* s : sshapes)
+				{
+					if (s->CheckShape(shape) == true)
+					{
+						Command* cmd = new ChangeColorCommand(s, selectedColor);
+						commandStack.Add(cmd);
+						return;
+					}
+				}
+			}
+		}
+	}
+	if (sElem == csgroup)
+	{
+		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
+
+		for (Shape* s : shapes)
+		{
+			if (s->CheckShape(shape) == true)
+			{
+				Command* cmd = new ChangeColorCommand(s, selectedColor);
+				commandStack.Add(cmd);
+				return;
+			}
+			else
+			{
+				std::vector<Shape*> sshapes = s->GetSubShapes();
+				for (Shape* s : sshapes)
+				{
+					if (s->CheckShape(shape) == true)
+					{
+						Command* cmd = new ChangeColorCommand(s, selectedColor);
+						commandStack.Add(cmd);
+						return;
+					}
+				}
 			}
 		}
 	}
@@ -250,6 +295,19 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 				Command* cmd = new DeleteCommand(canvas, s, shapes);
 				commandStack.Add(cmd);
 				return;
+			}
+			else
+			{
+				std::vector<Shape*> sshapes = s->GetSubShapes();
+				for (Shape* s : sshapes)
+				{
+					if (s->CheckShape(shape) == true)
+					{
+						Command* cmd = new DeleteCommand(canvas, s, shapes);
+						commandStack.Add(cmd);
+						return;
+					}
+				}
 			}
 		}
 	}
