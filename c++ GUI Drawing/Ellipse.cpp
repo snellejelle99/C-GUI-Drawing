@@ -53,7 +53,7 @@ void Ellipse::Accept(ShapeAddVisitor shapeAddVisitor)
 	shapeAddVisitor.Visit(this);
 }
 
-Platform::String^ Ellipse::ToString()
+Platform::String^ Ellipse::ToString(int counter)
 {
 	Platform::String^ string = "";
 	string += "ellip "
@@ -62,7 +62,11 @@ Platform::String^ Ellipse::ToString()
 		+ color.A + " " + color.R + " " + color.G + " " + color.B;
 
 	for (Shape* sh : subShapes) {
-		string += "\n	" + sh->ToString();
+		string += "\n";
+		for (int i = 0; i <= counter; i++) {
+			string += " ";
+		}
+		string += sh->ToString(counter++);
 	}
 
 	return string;

@@ -32,7 +32,7 @@ int Saver::SaveCanvas(std::vector<Shape*>shapes)
 		Platform::String^ string;
 		for(Shape* sh : shapes)
 		{
-			string += sh->ToString() + "\n";
+			string += sh->ToString(0) + "\n";
 		}
 		return string;
 	}();

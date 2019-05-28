@@ -55,7 +55,7 @@ void Rectangle::Accept(ShapeAddVisitor shapeAddVisitor)
 	shapeAddVisitor.Visit(this);
 }
 
-Platform::String^ Rectangle::ToString()
+Platform::String^ Rectangle::ToString(int counter)
 {
 	Platform::String^ string = "";
 	string += "rect "
@@ -64,7 +64,11 @@ Platform::String^ Rectangle::ToString()
 		+ color.A + " " + color.R + " " + color.G + " " + color.B;
 
 	for (Shape* sh : subShapes) {
-		string += "\n	" + sh->ToString();
+		string += "\n";
+		for (int i = 0; i <= counter; i++) {
+			string += "  ";
+		}
+		string += sh->ToString(++counter);
 	}
 
 	return string;
