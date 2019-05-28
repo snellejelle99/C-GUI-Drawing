@@ -57,6 +57,7 @@ void Rectangle::Accept(ShapeAddVisitor shapeAddVisitor)
 
 Platform::String^ Rectangle::ToString(int counter)
 {
+	counter++;
 	Platform::String^ string = "";
 	string += "rect "
 		+ left + " " + top + " "
@@ -65,10 +66,10 @@ Platform::String^ Rectangle::ToString(int counter)
 
 	for (Shape* sh : subShapes) {
 		string += "\n";
-		for (int i = 0; i <= counter; i++) {
-			string += "  ";
-		}
-		string += sh->ToString(++counter);
+		for (int i = 0; i < counter; i++) {
+			string += " ";
+		}		
+		string += sh->ToString(counter);
 	}
 
 	return string;
