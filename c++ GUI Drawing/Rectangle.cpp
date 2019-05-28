@@ -12,6 +12,7 @@ Rectangle::~Rectangle()
 
 void Rectangle::ChangeColor(Windows::UI::Color newColor)
 {
+	color = newColor;
 	rect->Fill = ref new SolidColorBrush(newColor);
 }
 
@@ -53,6 +54,32 @@ void Rectangle::Accept(ShapeAddVisitor shapeAddVisitor)
 		else if (ellipShape) ellipShape->Accept(shapeAddVisitor);
 	}
 	shapeAddVisitor.Visit(this);
+}
+
+void Rectangle::Accept(ChangeGroupColorVisitor changeGroupColorVisitor)
+{
+	for (int i = 0; i < subShapes.size(); i++)
+	{
+		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
+		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
+
+		if (rectShape) rectShape->Accept(changeGroupColorVisitor);
+		else if (ellipShape) ellipShape->Accept(changeGroupColorVisitor);
+	}
+	changeGroupColorVisitor.Visit(this);
+}
+
+void Rectangle::Accept(ChangeGroupColorBackVisitor changeGroupColorBackVisitor)
+{
+	for (int i = 0; i < subShapes.size(); i++)
+	{
+		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
+		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
+
+		if (rectShape) rectShape->Accept(changeGroupColorBackVisitor);
+		else if (ellipShape) ellipShape->Accept(changeGroupColorBackVisitor);
+	}
+	changeGroupColorBackVisitor.Visit(this);
 }
 
 Platform::String^ Rectangle::ToString(int counter)

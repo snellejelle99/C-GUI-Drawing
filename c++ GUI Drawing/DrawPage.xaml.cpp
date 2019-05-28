@@ -17,6 +17,7 @@
 //commands
 #include "Command.h"
 #include "ChangeColorCommand.h"
+#include "ChangeGroupColorCommand.h"
 #include "AddRectangleCommand.h"
 #include "AddEllipseCommand.h"
 #include "DeleteCommand.h"
@@ -246,7 +247,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 		{
 			if (s->CheckShape(shape) == true)
 			{
-				Command* cmd = new ChangeColorCommand(s, selectedColor);
+				Command* cmd = new ChangeGroupColorCommand(s, selectedColor);
 				commandStack.Add(cmd);
 				return;
 			}
@@ -257,7 +258,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 				{
 					if (s->CheckShape(shape) == true)
 					{
-						Command* cmd = new ChangeColorCommand(s, selectedColor);
+						Command* cmd = new ChangeGroupColorCommand(s, selectedColor);
 						commandStack.Add(cmd);
 						return;
 					}

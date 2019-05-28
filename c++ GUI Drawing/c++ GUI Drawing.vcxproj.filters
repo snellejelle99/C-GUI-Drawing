@@ -53,6 +53,9 @@
     <ClCompile Include="ChangeGroupColorVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="ChangeGroupColorBackVisitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawPage.xaml.h" />
@@ -111,6 +114,9 @@
       <Filter>Commands</Filter>
     </ClInclude>
     <ClInclude Include="ChangeGroupColorVisitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeGroupColorBackVisitor.h">
       <Filter>Visitor</Filter>
     </ClInclude>
   </ItemGroup>

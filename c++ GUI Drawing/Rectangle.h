@@ -15,6 +15,8 @@ public:
 	virtual Windows::UI::Xaml::Shapes::Shape^ GetShape();
 	virtual void Accept(ShapeDeleteVisitor shapeDeleteVisitor);
 	virtual void Accept(ShapeAddVisitor shapeAddVisitor);
+	virtual void Accept(ChangeGroupColorVisitor changeGroupColorVisitor);
+	virtual void Accept(ChangeGroupColorBackVisitor changeGroupColorBackVisitor);
 	virtual Platform::String^ ToString(int counter);
 
 private:

@@ -17,7 +17,6 @@ public:
 private:
 	Shape* shape;
 	Windows::UI::Color newColor;
-	Windows::UI::Color oldColor;
-
+	std::vector<std::tuple<Shape*, Windows::UI::Color>> oldColors;
 };
 #endif // !CHANGEGROUPCOLORCMD
