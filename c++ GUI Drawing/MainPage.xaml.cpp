@@ -30,5 +30,10 @@ MainPage::MainPage()
 
 void c___GUI_Drawing::MainPage::New_Drawing_BT_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	this->Frame->Navigate(DrawPage::typeid);
+	this->Frame->Navigate(DrawPage::typeid,"");
+}
+
+void c___GUI_Drawing::MainPage::Load_Drawing_BT_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	
 }

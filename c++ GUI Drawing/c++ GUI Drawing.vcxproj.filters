@@ -53,8 +53,9 @@
     <ClCompile Include="ChangeGroupColorVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
-    <ClCompile Include="ChangeGroupColorBackVisitor.cpp">
-      <Filter>Visitor</Filter>
+    <ClCompile Include="ChangeGroupColorBackVisitor.cpp" />
+    <ClCompile Include="Loader.cpp">
+      <Filter>Loader</Filter>
     </ClCompile>
     <ClCompile Include="MoveCommand.cpp">
       <Filter>Commands</Filter>
@@ -119,8 +120,9 @@
     <ClInclude Include="ChangeGroupColorVisitor.h">
       <Filter>Visitor</Filter>
     </ClInclude>
-    <ClInclude Include="ChangeGroupColorBackVisitor.h">
-      <Filter>Visitor</Filter>
+    <ClInclude Include="ChangeGroupColorBackVisitor.h" />
+    <ClInclude Include="Loader.h">
+      <Filter>Loader</Filter>
     </ClInclude>
     <ClInclude Include="MoveCommand.h">
       <Filter>Commands</Filter>
@@ -164,6 +166,9 @@
     </Filter>
     <Filter Include="Decorators">
       <UniqueIdentifier>{b53d80ce-7f8a-436d-bdc7-05c3d8d03df2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Loader">
+      <UniqueIdentifier>{3ffb1cf9-21ba-4beb-83c0-644980f91c4d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

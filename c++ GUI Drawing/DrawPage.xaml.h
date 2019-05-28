@@ -9,6 +9,7 @@
 
 namespace c___GUI_Drawing
 {
+	using namespace Platform;
 	/// <summary>
 	/// An empty page that can be used on its own or navigated to within a Frame.
 	/// </summary>
@@ -17,6 +18,7 @@ namespace c___GUI_Drawing
 	{
 	public:
 		DrawPage();
+
 	private:		
 		void canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
 		void canvas_PointerMoved(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
@@ -27,5 +29,6 @@ namespace c___GUI_Drawing
 		void RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void SelectHandler(Platform::Object ^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs ^ e);
 		void SaveHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
+		void LoadHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }

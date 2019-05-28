@@ -9,6 +9,9 @@
 //saver singleton
 #include "Saver.h"
 
+//loader/builder
+#include "Loader.h"
+
 //shapes
 #include "Shape.h"
 #include "Rectangle.h"
@@ -66,6 +69,8 @@ std::vector<Shape*> shapes;
 
 //commandstack
 CMDStack commandStack = CMDStack();
+
+
 
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
@@ -390,4 +395,11 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 void c___GUI_Drawing::DrawPage::SaveHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	Saver::GetSaver()->SaveCanvas(shapes);
+}
+
+
+void c___GUI_Drawing::DrawPage::LoadHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
+{
+	Loader loader = Loader(canvas, shapes);
+	loader.LoadFile();
 }
