@@ -15,7 +15,7 @@ public:
 	virtual Windows::UI::Xaml::Shapes::Shape^ GetShape();
 	virtual void Accept(ShapeDeleteVisitor shapeDeleteVisitor);
 	virtual void Accept(ShapeAddVisitor shapeAddVisitor);
-	virtual Platform::String^ ToString();
+	virtual Platform::String^ ToString(int counter);
 
 private:
 	Windows::UI::Xaml::Shapes::Rectangle ^rect;
