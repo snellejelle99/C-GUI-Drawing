@@ -71,6 +71,15 @@
     <ClCompile Include="MoveGroupBackVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
+    <ClCompile Include="RedBorderDecorator.cpp">
+      <Filter>Decorators</Filter>
+    </ClCompile>
+    <ClCompile Include="NoBorderDecorator.cpp">
+      <Filter>Decorators</Filter>
+    </ClCompile>
+    <ClCompile Include="BlueBorderDecorator.cpp">
+      <Filter>Decorators</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DrawPage.xaml.h" />
@@ -148,6 +157,15 @@
     </ClInclude>
     <ClInclude Include="MoveGroupBackVisitor.h">
       <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="RedBorderDecorator.h">
+      <Filter>Decorators</Filter>
+    </ClInclude>
+    <ClInclude Include="NoBorderDecorator.h">
+      <Filter>Decorators</Filter>
+    </ClInclude>
+    <ClInclude Include="BlueBorderDecorator.h">
+      <Filter>Decorators</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

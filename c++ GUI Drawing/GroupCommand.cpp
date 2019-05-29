@@ -16,12 +16,19 @@ void GroupCommand::Execute()
 	if (subShape != shape)
 	{
 		bool succes = shape->AddSubShape(subShape);
-		if (succes) shapes.erase(remove(shapes.begin(), shapes.end(), subShape), shapes.end());
+		if (succes)
+		{
+			shapes.erase(remove(shapes.begin(), shapes.end(), subShape), shapes.end());
+			executed = true;
+		}
 	}
 }
 
 void GroupCommand::Undo()
 {
-	shape->DelSubShape(subShape);
-	shapes.push_back(subShape);
+	if (executed) 
+	{
+		shape->DelSubShape(subShape);
+		shapes.push_back(subShape);
+	}
 }

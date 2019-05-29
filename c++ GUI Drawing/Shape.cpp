@@ -71,6 +71,7 @@ const std::vector<Shape*> Shape::GetSubShapes()
 	return result;
 }
 
+//return a list containing every shape above this shape recursively
 bool Shape::CheckIfParent(Shape* shape) 
 {
 	if (std::find(parentShapes.begin(), parentShapes.end(), shape) == parentShapes.end())

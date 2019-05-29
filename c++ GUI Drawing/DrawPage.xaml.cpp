@@ -17,6 +17,11 @@
 #include "Rectangle.h"
 #include "Ellipse.h"
 
+//decorators
+#include "RedBorderDecorator.h"
+#include "BlueBorderDecorator.h"
+#include "NoBorderDecorator.h"
+
 //commands
 #include "Command.h"
 #include "ChangeColorCommand.h"
@@ -76,7 +81,7 @@ CMDStack commandStack = CMDStack();
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns if shape or move is not selected
-	if (sElem == cssingle || sElem== csgroup || sElem == group || sElem == del || sElem == none) return;
+	if (sElem == cssingle || sElem == csgroup || sElem == group || sElem == del || sElem == none) return;
 
 	startPoint = e->GetCurrentPoint(canvas);
 
@@ -85,7 +90,10 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 	{
 		rect = ref new Shapes::Rectangle();
 		rect->AddHandler(UIElement::TappedEvent, ref new TappedEventHandler(this, &DrawPage::SelectHandler), true);
+		rect->AddHandler(UIElement::PointerEnteredEvent, ref new PointerEventHandler(this, &DrawPage::PointerEnterHandler), true);
+		rect->AddHandler(UIElement::PointerExitedEvent, ref new PointerEventHandler(this, &DrawPage::PointerLeaveHandler), true);
 		rect->Fill = ref new SolidColorBrush(selectedColor);
+		rect->StrokeThickness = 5.0;
 		canvas->SetLeft(rect, startPoint->Position.X);
 		canvas->SetTop(rect, startPoint->Position.Y);
 		canvas->Children->Append(rect);
@@ -94,7 +102,10 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 	{
 		ellip = ref new Shapes::Ellipse();
 		ellip->AddHandler(UIElement::TappedEvent, ref new TappedEventHandler(this, &DrawPage::SelectHandler), true);
+		ellip->AddHandler(UIElement::PointerEnteredEvent, ref new PointerEventHandler(this, &DrawPage::PointerEnterHandler), true);
+		ellip->AddHandler(UIElement::PointerExitedEvent, ref new PointerEventHandler(this, &DrawPage::PointerLeaveHandler), true);
 		ellip->Fill = ref new SolidColorBrush(selectedColor);
+		ellip->StrokeThickness = 5.0;
 		canvas->SetLeft(ellip, startPoint->Position.X);
 		canvas->SetTop(ellip, startPoint->Position.Y);
 		canvas->Children->Append(ellip);
@@ -234,7 +245,7 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 		sElem = del;
 		DrawPage::DeleteSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
 	}
-	else 
+	else
 	{
 		sElem = none;
 	}
@@ -255,6 +266,155 @@ void c___GUI_Drawing::DrawPage::UndoHandler(Platform::Object^ sender, Windows::U
 void c___GUI_Drawing::DrawPage::RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	commandStack.Redo();
+}
+
+//Handler that with a decorator pattern draws a border around the child and parent shapes when the group tool is selected
+void c___GUI_Drawing::DrawPage::PointerEnterHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
+{
+	if (sElem != group) return;
+
+	Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
+
+	for (Shape* s : shapes)
+	{
+		if (s->CheckShape(shape) == true)
+		{
+			std::vector<BlueBorderDecorator> children;
+			std::vector<RedBorderDecorator> parents;
+
+			for (Shape* c : s->GetSubShapes())
+			{
+				BlueBorderDecorator bbd = BlueBorderDecorator(c);
+				children.push_back(bbd);
+			}
+
+			for (Shape* c : s->GetParentShapes())
+			{
+				RedBorderDecorator rbd = RedBorderDecorator(c);
+				parents.push_back(rbd);
+			}
+
+			for (BlueBorderDecorator bbd : children)
+			{
+				bbd.Draw();
+			}
+
+			for (RedBorderDecorator rbd : parents)
+			{
+				rbd.Draw();
+			}
+			return;
+		}
+		else
+		{
+			std::vector<Shape*> sshapes = s->GetSubShapes();
+			for (Shape* s : sshapes)
+			{
+				if (s->CheckShape(shape) == true)
+				{
+					std::vector<BlueBorderDecorator> children;
+					std::vector<RedBorderDecorator> parents;
+
+					for (Shape* c : s->GetSubShapes())
+					{
+						BlueBorderDecorator bbd = BlueBorderDecorator(c);
+						children.push_back(bbd);
+					}
+
+					for (Shape* c : s->GetParentShapes())
+					{
+						RedBorderDecorator rbd = RedBorderDecorator(c);
+						parents.push_back(rbd);
+					}
+
+					for (BlueBorderDecorator bbd : children)
+					{
+						bbd.Draw();
+					}
+
+					for (RedBorderDecorator rbd : parents)
+					{
+						rbd.Draw();
+					}
+					return;
+				}
+			}
+		}
+	}
+}
+
+void c___GUI_Drawing::DrawPage::PointerLeaveHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
+{
+	if (sElem != group) return;
+
+	Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
+
+	for (Shape* s : shapes)
+	{
+		if (s->CheckShape(shape) == true)
+		{
+			std::vector<NoBorderDecorator> children;
+			std::vector<NoBorderDecorator> parents;
+
+			for (Shape* c : s->GetSubShapes())
+			{
+				NoBorderDecorator nbd = NoBorderDecorator(c);
+				children.push_back(nbd);
+			}
+
+			for (Shape* c : s->GetParentShapes())
+			{
+				NoBorderDecorator nbd = NoBorderDecorator(c);
+				parents.push_back(nbd);
+			}
+
+			for (NoBorderDecorator nbd : children)
+			{
+				nbd.Draw();
+			}
+
+			for (NoBorderDecorator nbd : parents)
+			{
+				nbd.Draw();
+			}
+			return;
+		}
+		else
+		{
+			std::vector<Shape*> sshapes = s->GetSubShapes();
+			for (Shape* s : sshapes)
+			{
+				if (s->CheckShape(shape) == true)
+				{
+					std::vector<NoBorderDecorator> children;
+					std::vector<NoBorderDecorator> parents;
+
+					for (Shape* c : s->GetSubShapes())
+					{
+						NoBorderDecorator nbd = NoBorderDecorator(c);
+						children.push_back(nbd);
+					}
+
+					for (Shape* c : s->GetParentShapes())
+					{
+						NoBorderDecorator nbd = NoBorderDecorator(c);
+						parents.push_back(nbd);
+					}
+
+					for (NoBorderDecorator nbd : children)
+					{
+						nbd.Draw();
+					}
+
+					for (NoBorderDecorator nbd : parents)
+					{
+						nbd.Draw();
+					}
+					return;
+				}
+			}
+		}
+	}
 }
 
 void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs^ e)
@@ -318,7 +478,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 	}
 	else if (sElem == smove || sElem == gmove)
 	{
-		if (selectedShape == nullptr) 
+		if (selectedShape == nullptr)
 		{
 			Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
 
