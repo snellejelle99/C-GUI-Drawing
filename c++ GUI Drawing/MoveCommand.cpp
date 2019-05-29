@@ -7,6 +7,8 @@ MoveCommand::MoveCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, Shape* sha
 	std::vector<double> topleft = shape->getTopLeft();
 	oldLeft = topleft[0];
 	oldTop = topleft[1];
+	leftFactor = (newLeft - shape->GetShape()->Width/2) - topleft[0];
+	topFactor =  (newTop - shape->GetShape()->Height/2) - topleft[1];
 }
 
 MoveCommand::~MoveCommand()
@@ -15,10 +17,10 @@ MoveCommand::~MoveCommand()
 
 void MoveCommand::Execute()
 {
-	shape->setTopLeft(newLeft - shape->GetShape()->Width / 2, newTop - shape->GetShape()->Height / 2);
+	shape->setTopLeft(oldLeft + leftFactor, oldTop + topFactor);
 
-	canvas->SetLeft(shape->GetShape(), newLeft - shape->GetShape()->Width/2);
-	canvas->SetTop(shape->GetShape(), newTop - shape->GetShape()->Height / 2);
+	canvas->SetLeft(shape->GetShape(), oldLeft + leftFactor);
+	canvas->SetTop(shape->GetShape(), oldTop + topFactor);
 	//Rectangle* rectShape = dynamic_cast<Rectangle*>(shape); // Will return nullptr if rectShape isn't a Rectangle.
 	//Ellipse* ellipShape = dynamic_cast<Ellipse*>(shape); // Will return nullptr if rectShape isn't a Rectangle.
 
@@ -28,8 +30,20 @@ void MoveCommand::Execute()
 
 void MoveCommand::Undo()
 {
+	shape->setTopLeft(oldLeft, oldTop);
+
 	canvas->SetLeft(shape->GetShape(), oldLeft);
 	canvas->SetTop(shape->GetShape(), oldTop);
+
+
+
+
+	/*std::vector<double> topleft = shape->getTopLeft();
+	shape->setTopLeft(topleft[0] - leftFactor, topleft[1] - topFactor);
+
+	canvas->SetLeft(shape->GetShape(), topleft[0] - leftFactor);
+	canvas->SetTop(shape->GetShape(), topleft[1] - topFactor);*/
+
 	//Rectangle* rectShape = dynamic_cast<Rectangle*>(shape); // Will return nullptr if rectShape isn't a Rectangle.
 	//Ellipse* ellipShape = dynamic_cast<Ellipse*>(shape); // Will return nullptr if rectShape isn't a Rectangle.
 

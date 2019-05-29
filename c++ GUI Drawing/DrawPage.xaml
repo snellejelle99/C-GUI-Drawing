@@ -18,10 +18,18 @@
         </StackPanel>
 
         <StackPanel x:Name="Toolbar" Orientation="Vertical" Background="LightGray" RelativePanel.Below="TopBar" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignLeftWithPanel="True">
-            <AppBarButton Label="Move" Name="MoveleSelect" Click="ObjectToggle" Background="LightGray">
+            <AppBarButton Label="Move" Name="MoveleSelect" Background="LightGray">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE8B0;" />
                 </AppBarButton.Icon>
+                <AppBarButton.Flyout>
+                    <Flyout Placement="Left">
+                        <StackPanel>
+                            <Button  Click="ObjectToggle" Name="MSingle" Background="Transparent">Single Element</Button>
+                            <Button  Click="ObjectToggle" Name="MGroup" Background="Transparent">All Group Ellements</Button>
+                        </StackPanel>
+                    </Flyout>
+                </AppBarButton.Flyout>
             </AppBarButton>
             <AppBarButton Label="Rectangle" Name="RectangleSelect" Click="ObjectToggle" Background="LightGray">
                 <AppBarButton.Icon>
@@ -33,7 +41,7 @@
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xEA3A;" />
                 </AppBarButton.Icon>
             </AppBarButton>
-            <AppBarButton Label="Color" Name="ColorSelect" Click="ObjectToggle" Background="LightGray">
+            <AppBarButton Label="Color" Name="ColorSelect" Background="LightGray">
                 <AppBarButton.Icon>
                     <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" />
                 </AppBarButton.Icon>

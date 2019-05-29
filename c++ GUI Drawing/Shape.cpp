@@ -15,10 +15,16 @@ Windows::UI::Color Shape::GetColor()
 	return color;
 }
 
-void Shape::AddSubShape(Shape * subShape)
+bool Shape::AddSubShape(Shape * subShape)
 {
-	subShapes.push_back(subShape);
-	subShape->AddParent(this);
+	if (!CheckIfParent(subShape))
+	{
+		subShapes.push_back(subShape);
+		bool succes = subShape->AddParent(this);
+		if (succes) return true;
+		else return false;
+	}
+	return false;
 }
 
 void Shape::DelSubShape(Shape * subShape)
@@ -52,7 +58,7 @@ const std::vector<Shape*> Shape::GetSubShapes()
 {
 	std::vector<Shape*> result;
 	if (subShapes.size() == 0) return result;
-	else 
+	else
 	{
 		for (Shape* sh : subShapes)
 		{
@@ -65,12 +71,49 @@ const std::vector<Shape*> Shape::GetSubShapes()
 	return result;
 }
 
-void Shape::AddParent(Shape * pShape)
+bool Shape::CheckIfParent(Shape* shape) 
 {
-	if (std::find(parentShapes.begin(), parentShapes.end(), pShape) == parentShapes.end()) //if not found add to parentShapes
+	if (std::find(parentShapes.begin(), parentShapes.end(), shape) == parentShapes.end())
 	{
-		parentShapes.push_back(pShape);
+		for (Shape* sh : parentShapes)
+		{
+			if (sh->CheckIfParent(shape))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
+	return true;
+}
+
+bool Shape::CheckIfSubShape(Shape* shape)
+{
+	if (std::find(subShapes.begin(), subShapes.end(), shape) == subShapes.end())
+	{
+		for (Shape* sh : parentShapes)
+		{
+			if (sh->CheckIfSubShape(shape))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	return true;
+}
+
+bool Shape::AddParent(Shape * pShape)
+{
+	if (!CheckIfSubShape(pShape))
+	{
+		if (std::find(parentShapes.begin(), parentShapes.end(), pShape) == parentShapes.end()) //if not found add to parentShapes
+		{
+			parentShapes.push_back(pShape);
+			return true;
+		}
+	}
+	return false;
 }
 
 void Shape::DellFromParent()

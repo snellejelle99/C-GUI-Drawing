@@ -53,12 +53,23 @@
     <ClCompile Include="ChangeGroupColorVisitor.cpp">
       <Filter>Visitor</Filter>
     </ClCompile>
-    <ClCompile Include="ChangeGroupColorBackVisitor.cpp" />
     <ClCompile Include="Loader.cpp">
       <Filter>Loader</Filter>
     </ClCompile>
     <ClCompile Include="MoveCommand.cpp">
       <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveGroupVisitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeGroupColorBackVisitor.cpp">
+      <Filter>Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveGroupCommand.cpp">
+      <Filter>Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="MoveGroupBackVisitor.cpp">
+      <Filter>Visitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,12 +131,23 @@
     <ClInclude Include="ChangeGroupColorVisitor.h">
       <Filter>Visitor</Filter>
     </ClInclude>
-    <ClInclude Include="ChangeGroupColorBackVisitor.h" />
     <ClInclude Include="Loader.h">
       <Filter>Loader</Filter>
     </ClInclude>
     <ClInclude Include="MoveCommand.h">
       <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveGroupVisitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeGroupColorBackVisitor.h">
+      <Filter>Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveGroupCommand.h">
+      <Filter>Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveGroupBackVisitor.h">
+      <Filter>Visitor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

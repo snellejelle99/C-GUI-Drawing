@@ -26,6 +26,7 @@
 #include "DeleteCommand.h"
 #include "GroupCommand.h"
 #include "MoveCommand.h"
+#include "MoveGroupCommand.h"
 
 //commandstack
 #include "CommandStack.h"
@@ -48,7 +49,7 @@ using namespace Windows::UI::Xaml::Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-enum SelectedElem { rectangle, ellipse, cssingle, csgroup, move, group, del, none };
+enum SelectedElem { rectangle, ellipse, cssingle, csgroup, smove, gmove, group, del, none };
 
 DrawPage::DrawPage()
 {
@@ -98,11 +99,20 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 		canvas->SetTop(ellip, startPoint->Position.Y);
 		canvas->Children->Append(ellip);
 	}
-	else if (sElem = move)
+	else if (sElem == smove)
 	{
 		if (selectedShape == nullptr) return;
 
 		Command* cmd = new MoveCommand(canvas, selectedShape, startPoint->Position.X, startPoint->Position.Y);
+		commandStack.Add(cmd);
+
+		selectedShape = nullptr;
+	}
+	else if (sElem == gmove)
+	{
+		if (selectedShape == nullptr) return;
+
+		Command* cmd = new MoveGroupCommand(canvas, selectedShape, startPoint->Position.X, startPoint->Position.Y);
 		commandStack.Add(cmd);
 
 		selectedShape = nullptr;
@@ -145,7 +155,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns if shape is not selected
-	if (sElem == cssingle || sElem == csgroup || sElem == move || sElem == group || sElem == del || sElem == none) return;
+	if (sElem == cssingle || sElem == csgroup || sElem == smove || sElem == gmove || sElem == group || sElem == del || sElem == none) return;
 
 	// define cmd object and add it to the commandstack
 	Command* cmd = nullptr;
@@ -189,7 +199,6 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 	else if (sender->Equals(ColorSelect))
 	{
 		sElem = none;
-		DrawPage::ColorSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
 	}
 	else if (sender->Equals(CSSingle))
 	{
@@ -203,7 +212,16 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 	}
 	else if (sender->Equals(MoveleSelect))
 	{
-		sElem = move;
+		sElem = none;
+	}
+	else if (sender->Equals(MSingle))
+	{
+		sElem = smove;
+		DrawPage::MoveleSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
+	}
+	else if (sender->Equals(MGroup))
+	{
+		sElem = gmove;
 		DrawPage::MoveleSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::DarkGray);
 	}
 	else if (sender->Equals(GroupSelect))
@@ -298,7 +316,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 			}
 		}
 	}
-	else if (sElem == move)
+	else if (sElem == smove || sElem == gmove)
 	{
 		if (selectedShape == nullptr) 
 		{

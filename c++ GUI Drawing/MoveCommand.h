@@ -15,7 +15,7 @@ public:
 private:
 	Shape* shape;
 	Windows::UI::Xaml::Controls::Canvas ^canvas;
-	double newLeft, newTop, oldLeft, oldTop;
+	double newLeft, newTop, leftFactor, topFactor, oldLeft, oldTop;
 };
 
 

@@ -15,8 +15,8 @@ void GroupCommand::Execute()
 {
 	if (subShape != shape)
 	{
-		shape->AddSubShape(subShape);
-		shapes.erase(remove(shapes.begin(), shapes.end(), subShape), shapes.end());
+		bool succes = shape->AddSubShape(subShape);
+		if (succes) shapes.erase(remove(shapes.begin(), shapes.end(), subShape), shapes.end());
 	}
 }
 

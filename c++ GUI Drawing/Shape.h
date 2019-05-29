@@ -13,11 +13,14 @@ public:
 	~Shape();
 
 	Windows::UI::Color GetColor(); //returns the color of the shape
-	void AddSubShape(Shape* subShape);
+	bool AddSubShape(Shape* subShape);
 	void DelSubShape(Shape* subShape);
 	std::vector<double> getTopLeft();
 	void setTopLeft(double left, double top);
 	const std::vector<Shape*> GetSubShapes(); //return a list containing every shape beneath this shape recursively
+
+	bool CheckIfParent(Shape* pShape); //check recursivley if this shape is a parent of one of the above shapes
+	bool CheckIfSubShape(Shape* shape);  //check recursivley if this shape is a parent of one of the above shapes
 	
 	void DellFromParent(); //deletes this shape in the subshapes list of the parent
 	const std::vector<Shape*> GetParentShapes(); //returns the list of parent shapes
@@ -37,7 +40,7 @@ protected:
 	std::vector<Shape*> subShapes;
 
 	//functions
-	void AddParent(Shape* pShape); //adds a shape to the parent list
+	bool AddParent(Shape* pShape); //adds a shape to the parent list
 };
 
 
