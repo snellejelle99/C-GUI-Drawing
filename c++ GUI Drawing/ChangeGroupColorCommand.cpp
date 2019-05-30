@@ -5,6 +5,7 @@
 #include "Ellipse.h"
 #include <tuple>
 
+//constructor that gets all the children of the given shape and saves their color in a tuple vector.
 ChangeGroupColorCommand::ChangeGroupColorCommand(Shape* shape, Windows::UI::Color newColor) : shape(shape), newColor(newColor)
 {
 	std::tuple<Shape*, Windows::UI::Color> oldcolortuple;
@@ -24,6 +25,7 @@ ChangeGroupColorCommand::~ChangeGroupColorCommand()
 {
 }
 
+//execute that creates a visitor wich visits all the children of the given shape and changes the color to the new color
 void ChangeGroupColorCommand::Execute()
 {
 	ChangeGroupColorVisitor changeGroupColorVisitor = ChangeGroupColorVisitor(newColor);
@@ -34,6 +36,7 @@ void ChangeGroupColorCommand::Execute()
 	else if (ellipShape) ellipShape->Accept(changeGroupColorVisitor);
 }
 
+//undo that creates a visitor wich wisits all the children and changes the color back to its original color with the saved tuple vector.
 void ChangeGroupColorCommand::Undo()
 {
 	ChangeGroupColorBackVisitor changeGroupColorBackVisitor = ChangeGroupColorBackVisitor(oldColors);

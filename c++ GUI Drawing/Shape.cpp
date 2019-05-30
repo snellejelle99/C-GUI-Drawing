@@ -71,6 +71,23 @@ const std::vector<Shape*> Shape::GetSubShapes()
 	return result;
 }
 
+const std::vector<Shape*> Shape::GetAllParents()
+{
+	std::vector<Shape*> result;
+	if (parentShapes.size() == 0) return result;
+	else
+	{
+		for (Shape* sh : parentShapes)
+		{
+			result.push_back(sh);
+			std::vector<Shape*> addition = sh->GetAllParents();
+			result.insert(result.end(), addition.begin(), addition.end());
+		}
+	}
+
+	return result;
+}
+
 //return a list containing every shape above this shape recursively
 bool Shape::CheckIfParent(Shape* shape) 
 {

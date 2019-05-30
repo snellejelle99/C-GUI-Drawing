@@ -11,6 +11,7 @@ GroupCommand::~GroupCommand()
 {
 }
 
+//execute that groups an element to another element and removes it from the toplevel shapes list
 void GroupCommand::Execute()
 {
 	if (subShape != shape)
@@ -24,6 +25,7 @@ void GroupCommand::Execute()
 	}
 }
 
+//undo that removes the subshape from the parent element and returns it to the toplevel shapes list
 void GroupCommand::Undo()
 {
 	if (executed) 

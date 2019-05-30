@@ -3,6 +3,7 @@
 
 #include "Shape.h"
 
+//definition of the shapedecorator class with a virtual draw method
 class ShapeDecorator
 {
 public:

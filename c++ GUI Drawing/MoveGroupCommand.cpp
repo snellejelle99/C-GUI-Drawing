@@ -4,6 +4,7 @@
 #include "Rectangle.h"
 #include "Ellipse.h"
 
+//execute that calculates the left and topfactor for the move
 MoveGroupCommand::MoveGroupCommand(Windows::UI::Xaml::Controls::Canvas ^canvas, Shape* shape, double newLeft, double newTop) : canvas(canvas), shape(shape)
 {
 	std::vector<double> topleft = shape->getTopLeft();
@@ -15,6 +16,7 @@ MoveGroupCommand::~MoveGroupCommand()
 {
 }
 
+//execute that makes a visitor which will visit all of the given shapes children and move them with the move factors
 void MoveGroupCommand::Execute()
 {
 	MoveGroupVisitor moveGroupVisitor = MoveGroupVisitor(canvas, leftFactor, topFactor);
@@ -25,6 +27,7 @@ void MoveGroupCommand::Execute()
 	else if (ellipShape) ellipShape->Accept(moveGroupVisitor);
 }
 
+//undo that makes a visitor which will visit all of the given shapes children and move them back with the move factors
 void MoveGroupCommand::Undo()
 {
 	MoveGroupBackVisitor moveGroupBackVisitor = MoveGroupBackVisitor(canvas, leftFactor, topFactor);

@@ -1,5 +1,7 @@
 #ifndef COMMAND
 #define COMMAND
+
+//virtual classs that defines the execute and undo method of commands
 class Command
 {
 public:

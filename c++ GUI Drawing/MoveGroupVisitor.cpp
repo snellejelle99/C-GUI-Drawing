@@ -10,7 +10,7 @@ MoveGroupVisitor::~MoveGroupVisitor()
 {
 }
 
-//implementation of MoveGroupVisitor for Rectangle
+//visit which shifts the topleft with the given factors
 void MoveGroupVisitor::Visit(Rectangle* shape)
 {
 	std::vector<double> topleft = shape->getTopLeft();
@@ -20,7 +20,7 @@ void MoveGroupVisitor::Visit(Rectangle* shape)
 	canvas->SetTop(shape->GetShape(), topleft[1] + topFactor);
 }
 
-//implementation of ChangeGroupColorVisitor for Ellipse
+//visit which shifts the topleft with the given factors
 void MoveGroupVisitor::Visit(Ellipse* shape)
 {
 	std::vector<double> topleft = shape->getTopLeft();

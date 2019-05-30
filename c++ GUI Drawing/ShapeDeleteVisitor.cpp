@@ -10,7 +10,7 @@ ShapeDeleteVisitor::~ShapeDeleteVisitor()
 {
 }
 
-//implementation of ShapeDeleteVisitor for Rectangle
+//visit which deletes element from the canvas and from its parent
 void ShapeDeleteVisitor::Visit(Rectangle* shape)
 {
 	unsigned int index = 0;
@@ -22,7 +22,7 @@ void ShapeDeleteVisitor::Visit(Rectangle* shape)
 	shape->DellFromParent();
 }
 
-//implementation of ShapeDeleteVisitor for Ellipse
+//visit which deletes element from the canvas and from its parent
 void ShapeDeleteVisitor::Visit(Ellipse* shape)
 {
 	unsigned int index = 0;

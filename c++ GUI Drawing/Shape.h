@@ -18,6 +18,7 @@ public:
 	std::vector<double> getTopLeft();
 	void setTopLeft(double left, double top);
 	const std::vector<Shape*> GetSubShapes(); //return a list containing every shape beneath this shape recursively
+	const std::vector<Shape*> GetAllParents(); // return a list containing every shape above this shape recursively
 
 	bool CheckIfParent(Shape* pShape); //check recursivley if this shape is a parent of one of the above shapes
 	bool CheckIfSubShape(Shape* shape);  //check recursivley if this shape is a parent of one of the above shapes

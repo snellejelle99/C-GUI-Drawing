@@ -10,7 +10,7 @@ ChangeGroupColorBackVisitor::~ChangeGroupColorBackVisitor()
 {
 }
 
-//implementation of ChangeGroupColorVisitor for Rectangle
+//visit which loops trough the oldcolor vector and gives the shape its old color
 void ChangeGroupColorBackVisitor::Visit(Rectangle* shape)
 {
 	for (std::tuple<Shape*, Windows::UI::Color> octuple : oldColors)
@@ -22,7 +22,7 @@ void ChangeGroupColorBackVisitor::Visit(Rectangle* shape)
 	}
 }
 
-//implementation of ChangeGroupColorVisitor for Ellipse
+//visit which loops trough the oldcolor vector and gives the shape its old color
 void ChangeGroupColorBackVisitor::Visit(Ellipse* shape)
 {
 	for (std::tuple<Shape*, Windows::UI::Color> octuple : oldColors)

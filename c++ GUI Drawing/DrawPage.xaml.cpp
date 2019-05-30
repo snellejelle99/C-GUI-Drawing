@@ -110,7 +110,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 		canvas->SetTop(ellip, startPoint->Position.Y);
 		canvas->Children->Append(ellip);
 	}
-	else if (sElem == smove)
+	else if (sElem == smove) //for creating single move commands, returns when no shape is selected.
 	{
 		if (selectedShape == nullptr) return;
 
@@ -119,7 +119,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 
 		selectedShape = nullptr;
 	}
-	else if (sElem == gmove)
+	else if (sElem == gmove) //for creating group move commands, returns when no shape is selected
 	{
 		if (selectedShape == nullptr) return;
 
@@ -188,6 +188,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender,
 	ellip = nullptr;
 }
 
+//method for handling the user UI input and switching between elements.
 void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	DrawPage::RectangleSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
@@ -253,30 +254,35 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 	selectedShape = nullptr;
 }
 
+//method for switching currently selected color
 void c___GUI_Drawing::DrawPage::ColorPicker_ColorChanged(Windows::UI::Xaml::Controls::ColorPicker^ sender, Windows::UI::Xaml::Controls::ColorChangedEventArgs^ args)
 {
 	selectedColor = sender->Color;
 }
 
+//method for handling the undo button
 void c___GUI_Drawing::DrawPage::UndoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	commandStack.Undo();
 }
 
+//method for handling the redo button
 void c___GUI_Drawing::DrawPage::RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	commandStack.Redo();
 }
 
-//Handler that with a decorator pattern draws a border around the child and parent shapes when the group tool is selected
+//Method that with a decorator pattern draws a border around the child and parent shapes when the group tool is selected
 void c___GUI_Drawing::DrawPage::PointerEnterHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
-	if (sElem != group) return;
+	if (sElem != group) return; //return when group tool isn't selected
 
-	Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
+	Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender); //cast sender to wpf shape
 
+	//loop through all elements in the shapes vector, if shape isn't found loop through the children of the elements in shapes vector.
 	for (Shape* s : shapes)
 	{
+		//if shape is found that is the sender grab all its parents and children and draw with a decorator a border
 		if (s->CheckShape(shape) == true)
 		{
 			std::vector<BlueBorderDecorator> children;
@@ -288,7 +294,7 @@ void c___GUI_Drawing::DrawPage::PointerEnterHandler(Platform::Object^ sender, Wi
 				children.push_back(bbd);
 			}
 
-			for (Shape* c : s->GetParentShapes())
+			for (Shape* c : s->GetAllParents())
 			{
 				RedBorderDecorator rbd = RedBorderDecorator(c);
 				parents.push_back(rbd);
@@ -310,6 +316,7 @@ void c___GUI_Drawing::DrawPage::PointerEnterHandler(Platform::Object^ sender, Wi
 			std::vector<Shape*> sshapes = s->GetSubShapes();
 			for (Shape* s : sshapes)
 			{
+				//if shape is found that is the sender grab all its parents and children and draw with a decorator a border
 				if (s->CheckShape(shape) == true)
 				{
 					std::vector<BlueBorderDecorator> children;
@@ -321,7 +328,7 @@ void c___GUI_Drawing::DrawPage::PointerEnterHandler(Platform::Object^ sender, Wi
 						children.push_back(bbd);
 					}
 
-					for (Shape* c : s->GetParentShapes())
+					for (Shape* c : s->GetAllParents())
 					{
 						RedBorderDecorator rbd = RedBorderDecorator(c);
 						parents.push_back(rbd);
@@ -343,14 +350,17 @@ void c___GUI_Drawing::DrawPage::PointerEnterHandler(Platform::Object^ sender, Wi
 	}
 }
 
+//method that removes borders when the pointer leaves a wpf element.
 void c___GUI_Drawing::DrawPage::PointerLeaveHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
-	if (sElem != group) return;
+	if (sElem != group) return; // return if group tool isn't selected
 
 	Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
 
+	//loop through all elements in the shapes vector, if shape isn't found loop through the children of the elements in shapes vector.
 	for (Shape* s : shapes)
 	{
+		//if shape is found that is the sender grab all its parents and children and remove with a decorator the borders
 		if (s->CheckShape(shape) == true)
 		{
 			std::vector<NoBorderDecorator> children;
@@ -362,7 +372,7 @@ void c___GUI_Drawing::DrawPage::PointerLeaveHandler(Platform::Object^ sender, Wi
 				children.push_back(nbd);
 			}
 
-			for (Shape* c : s->GetParentShapes())
+			for (Shape* c : s->GetAllParents())
 			{
 				NoBorderDecorator nbd = NoBorderDecorator(c);
 				parents.push_back(nbd);
@@ -384,6 +394,7 @@ void c___GUI_Drawing::DrawPage::PointerLeaveHandler(Platform::Object^ sender, Wi
 			std::vector<Shape*> sshapes = s->GetSubShapes();
 			for (Shape* s : sshapes)
 			{
+				//if shape is found that is the sender grab all its parents and children and remove with a decorator the borders
 				if (s->CheckShape(shape) == true)
 				{
 					std::vector<NoBorderDecorator> children;
@@ -395,7 +406,7 @@ void c___GUI_Drawing::DrawPage::PointerLeaveHandler(Platform::Object^ sender, Wi
 						children.push_back(nbd);
 					}
 
-					for (Shape* c : s->GetParentShapes())
+					for (Shape* c : s->GetAllParents())
 					{
 						NoBorderDecorator nbd = NoBorderDecorator(c);
 						parents.push_back(nbd);
@@ -417,6 +428,7 @@ void c___GUI_Drawing::DrawPage::PointerLeaveHandler(Platform::Object^ sender, Wi
 	}
 }
 
+//method that handles the creation of commands based on the currently selected element
 void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs^ e)
 {
 	//returns if shape is selected
@@ -570,12 +582,13 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 	}
 }
 
+//method for handeling the save button
 void c___GUI_Drawing::DrawPage::SaveHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	Saver::GetSaver()->SaveCanvas(shapes);
 }
 
-
+//method for handling the load button
 void c___GUI_Drawing::DrawPage::LoadHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
 	Loader loader = Loader(canvas, shapes);

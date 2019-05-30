@@ -8,7 +8,7 @@
 #include "MoveGroupVisitor.h"
 #include "MoveGroupBackVisitor.h"
 
-//interface that defines the Accept for shapeDeleteVisitor and ShapeAddVisitor
+//interface that defines the Accept for all the visitors
 class ShapeAccept
 {
 public:

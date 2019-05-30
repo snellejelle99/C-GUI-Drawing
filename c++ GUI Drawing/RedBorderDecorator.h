@@ -4,6 +4,7 @@
 #include "Shape.h"
 #include "ShapeDecorator.h"
 
+//border decorator which inherits from ShapeDecorator
 class RedBorderDecorator : public ShapeDecorator
 {
 public:
