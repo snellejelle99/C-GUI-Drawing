@@ -10,13 +10,13 @@ ChangeGroupColorVisitor::~ChangeGroupColorVisitor()
 {
 }
 
-//implementation of ChangeGroupColorVisitor for Rectangle
+//visit which changes the color of the given shape
 void ChangeGroupColorVisitor::Visit(Rectangle* shape)
 {
 	shape->ChangeColor(newColor);
 }
 
-//implementation of ChangeGroupColorVisitor for Ellipse
+//visit which changes the color of the given shape
 void ChangeGroupColorVisitor::Visit(Ellipse* shape)
 {
 	shape->ChangeColor(newColor);

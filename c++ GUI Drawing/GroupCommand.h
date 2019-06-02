@@ -16,6 +16,7 @@ private:
 	Shape* shape;
 	Shape* subShape;
 	std::vector<Shape*> &shapes;
+	bool executed = false;
 };
 
 #endif 

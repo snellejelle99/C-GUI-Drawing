@@ -80,6 +80,32 @@ void Ellipse::Accept(ChangeGroupColorBackVisitor changeGroupColorBackVisitor)
 	changeGroupColorBackVisitor.Visit(this);
 }
 
+void Ellipse::Accept(MoveGroupVisitor moveGroupVisitor)
+{
+	for (int i = 0; i < subShapes.size(); i++)
+	{
+		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
+		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
+
+		if (rectShape) rectShape->Accept(moveGroupVisitor);
+		else if (ellipShape) ellipShape->Accept(moveGroupVisitor);
+	}
+	moveGroupVisitor.Visit(this);
+}
+
+void Ellipse::Accept(MoveGroupBackVisitor MoveGroupBackVisitor)
+{
+	for (int i = 0; i < subShapes.size(); i++)
+	{
+		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
+		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
+
+		if (rectShape) rectShape->Accept(MoveGroupBackVisitor);
+		else if (ellipShape) ellipShape->Accept(MoveGroupBackVisitor);
+	}
+	MoveGroupBackVisitor.Visit(this);
+}
+
 Platform::String^ Ellipse::ToString(int counter)
 {
 	counter++;

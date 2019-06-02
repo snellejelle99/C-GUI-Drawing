@@ -10,13 +10,13 @@ ShapeAddVisitor::~ShapeAddVisitor()
 {
 }
 
-//implementation of ShapeAddVisitor for Rectangle
+//visit which appends the shape to the canvas
 void ShapeAddVisitor::Visit(Rectangle * shape)
 {
 	canvas->Children->Append(shape->GetShape());
 }
 
-//implementation of ShapeAddVisitor for Rectangle
+//visit which appends the shape to the canvas
 void ShapeAddVisitor::Visit(Ellipse * shape)
 {
 	canvas->Children->Append(shape->GetShape());

@@ -142,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="AddEllipseCommand.h" />
     <ClInclude Include="AddRectangleCommand.h" />
+    <ClInclude Include="BlueBorderDecorator.h" />
     <ClInclude Include="ChangeColorCommand.h" />
     <ClInclude Include="ChangeGroupColorCommand.h" />
     <ClInclude Include="ChangeGroupColorVisitor.h" />
@@ -152,6 +153,11 @@
     <ClInclude Include="GroupCommand.h" />
     <ClInclude Include="MoveCommand.h" />
     <ClInclude Include="Loader.h" />
+    <ClInclude Include="MoveGroupBackVisitor.h" />
+    <ClInclude Include="MoveGroupCommand.h" />
+    <ClInclude Include="MoveGroupVisitor.h" />
+    <ClInclude Include="NoBorderDecorator.h" />
+    <ClInclude Include="RedBorderDecorator.h" />
     <ClInclude Include="Saver.h" />
     <ClInclude Include="DrawPage.xaml.h">
       <DependentUpon>DrawPage.xaml</DependentUpon>
@@ -205,6 +211,7 @@
     <ClCompile Include="App.xaml.cpp">
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
+    <ClCompile Include="BlueBorderDecorator.cpp" />
     <ClCompile Include="ChangeColorCommand.cpp" />
     <ClCompile Include="ChangeGroupColorCommand.cpp" />
     <ClCompile Include="ChangeGroupColorVisitor.cpp" />
@@ -214,6 +221,11 @@
     <ClCompile Include="GroupCommand.cpp" />
     <ClCompile Include="MoveCommand.cpp" />
     <ClCompile Include="Loader.cpp" />
+    <ClCompile Include="MoveGroupBackVisitor.cpp" />
+    <ClCompile Include="MoveGroupCommand.cpp" />
+    <ClCompile Include="MoveGroupVisitor.cpp" />
+    <ClCompile Include="NoBorderDecorator.cpp" />
+    <ClCompile Include="RedBorderDecorator.cpp" />
     <ClCompile Include="Saver.cpp" />
     <ClCompile Include="DrawPage.xaml.cpp">
       <DependentUpon>DrawPage.xaml</DependentUpon>

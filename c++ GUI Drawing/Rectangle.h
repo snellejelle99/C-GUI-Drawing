@@ -17,6 +17,8 @@ public:
 	virtual void Accept(ShapeAddVisitor shapeAddVisitor);
 	virtual void Accept(ChangeGroupColorVisitor changeGroupColorVisitor);
 	virtual void Accept(ChangeGroupColorBackVisitor changeGroupColorBackVisitor);
+	virtual void Accept(MoveGroupVisitor moveGroupVisitor);
+	virtual void Accept(MoveGroupBackVisitor moveGroupBackVisitor);
 	virtual Platform::String^ ToString(int counter = 0);
 
 private:

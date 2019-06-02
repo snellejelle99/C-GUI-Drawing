@@ -11,17 +11,26 @@ GroupCommand::~GroupCommand()
 {
 }
 
+//execute that groups an element to another element and removes it from the toplevel shapes list
 void GroupCommand::Execute()
 {
 	if (subShape != shape)
 	{
-		shape->AddSubShape(subShape);
-		shapes.erase(remove(shapes.begin(), shapes.end(), subShape), shapes.end());
+		bool succes = shape->AddSubShape(subShape);
+		if (succes)
+		{
+			shapes.erase(remove(shapes.begin(), shapes.end(), subShape), shapes.end());
+			executed = true;
+		}
 	}
 }
 
+//undo that removes the subshape from the parent element and returns it to the toplevel shapes list
 void GroupCommand::Undo()
 {
-	shape->DelSubShape(subShape);
-	shapes.push_back(subShape);
+	if (executed) 
+	{
+		shape->DelSubShape(subShape);
+		shapes.push_back(subShape);
+	}
 }
