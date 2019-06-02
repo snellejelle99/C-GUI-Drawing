@@ -33,7 +33,7 @@ namespace c___GUI_Drawing
 		void RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void PointerEnterHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
 		void PointerLeaveHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
-		void SelectHandler(Platform::Object ^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs ^ e);
+		//void SelectHandler(Platform::Object ^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs ^ e);
 		void SaveHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void LoadHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};

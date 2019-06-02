@@ -18,12 +18,10 @@ Windows::UI::Color Shape::GetColor()
 bool Shape::AddSubShape(Shape * subShape)
 {
 	if (!CheckIfParent(subShape))
-	{		
+	{
+		subShapes.push_back(subShape);
 		bool succes = subShape->AddParent(this);
-		if (succes) { 
-			subShapes.push_back(subShape);
-			return true; 
-		}
+		if (succes) return true;
 		else return false;
 	}
 	return false;

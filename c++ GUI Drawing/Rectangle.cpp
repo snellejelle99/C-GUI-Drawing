@@ -30,7 +30,7 @@ Windows::UI::Xaml::Shapes::Shape^ Rectangle::GetShape()
 //implementation of shapeAccept for deleteVisitor
 void Rectangle::Accept(ShapeDeleteVisitor shapeDeleteVisitor)
 {
-	for (int i = 0; i < subShapes.size(); i++)
+	for (unsigned int i = 0; i < subShapes.size(); i++)
 	{
 		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
 		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
@@ -45,7 +45,7 @@ void Rectangle::Accept(ShapeDeleteVisitor shapeDeleteVisitor)
 //implementation of shapeAccept for addVisitor
 void Rectangle::Accept(ShapeAddVisitor shapeAddVisitor)
 {
-	for (int i = 0; i < subShapes.size(); i++)
+	for (unsigned int i = 0; i < subShapes.size(); i++)
 	{
 		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
 		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
@@ -58,7 +58,7 @@ void Rectangle::Accept(ShapeAddVisitor shapeAddVisitor)
 
 void Rectangle::Accept(ChangeGroupColorVisitor changeGroupColorVisitor)
 {
-	for (int i = 0; i < subShapes.size(); i++)
+	for (unsigned int i = 0; i < subShapes.size(); i++)
 	{
 		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
 		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
@@ -71,7 +71,7 @@ void Rectangle::Accept(ChangeGroupColorVisitor changeGroupColorVisitor)
 
 void Rectangle::Accept(ChangeGroupColorBackVisitor changeGroupColorBackVisitor)
 {
-	for (int i = 0; i < subShapes.size(); i++)
+	for (unsigned int i = 0; i < subShapes.size(); i++)
 	{
 		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
 		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
@@ -84,7 +84,7 @@ void Rectangle::Accept(ChangeGroupColorBackVisitor changeGroupColorBackVisitor)
 
 void Rectangle::Accept(MoveGroupVisitor moveGroupVisitor)
 {
-	for (int i = 0; i < subShapes.size(); i++)
+	for (unsigned int i = 0; i < subShapes.size(); i++)
 	{
 		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
 		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
@@ -97,7 +97,7 @@ void Rectangle::Accept(MoveGroupVisitor moveGroupVisitor)
 
 void Rectangle::Accept(MoveGroupBackVisitor MoveGroupBackVisitor)
 {
-	for (int i = 0; i < subShapes.size(); i++)
+	for (unsigned int i = 0; i < subShapes.size(); i++)
 	{
 		Rectangle* rectShape = dynamic_cast<Rectangle*>(subShapes[i]); // Will return nullptr if rectShape isn't a Rectangle.
 		Ellipse* ellipShape = dynamic_cast<Ellipse*>(subShapes[i]); // Will return nullptr if ellipShape isn't a Elipse.
