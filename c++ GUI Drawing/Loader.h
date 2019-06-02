@@ -1,11 +1,16 @@
 #pragma once
 
+#include "DrawPage.g.h"
+#include "DrawPage.xaml.h"
 #include "pch.h"
+
+
 #include "Shape.h"
 #include "Rectangle.h"
 #include "Ellipse.h"
 
 #include <string>
+
 
 using namespace concurrency;
 using namespace Platform;
@@ -19,17 +24,20 @@ using namespace Windows::UI::Xaml::Navigation;
 class Loader
 {
 public:
-	Loader(Windows::UI::Xaml::Controls::Canvas ^ canvas, std::vector<Shape*> & shapes);
+	Loader(c___GUI_Drawing::DrawPage ^ drawpage,Windows::UI::Xaml::Controls::Canvas ^ canvas, std::vector<Shape*> & shapes);
 	~Loader();
-	void LoadFile();
+	void LoadFile();	
 
 private:
 	std::string ConvertString(String^ string);
-	std::vector<std::string> StringToLines(std::string string);
+	std::vector<std::string> StringSplitOnChar(std::string string, char token);
 
-	void Build(std::vector<std::string> lines);
+	//build from the loadedstring
+	void Build(std::string loadedstring);
 
+	c___GUI_Drawing::DrawPage ^ drawpage;
 	Windows::UI::Xaml::Controls::Canvas ^ canvas;
 	std::vector<Shape*> & shapes;
+
 };
 

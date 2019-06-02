@@ -50,11 +50,6 @@ using namespace Windows::UI::Xaml::Navigation;
 
 enum SelectedElem { rectangle, ellipse, cssingle, csgroup, move, group, del, none };
 
-DrawPage::DrawPage()
-{
-	InitializeComponent();
-}
-
 // global initialization of required variables for creating shapes
 Windows::UI::Input::PointerPoint ^startPoint;
 Windows::UI::Xaml::Shapes::Rectangle ^rect;
@@ -70,7 +65,13 @@ std::vector<Shape*> shapes;
 //commandstack
 CMDStack commandStack = CMDStack();
 
+//loader for loading files only set to other than null if used
+Loader * loader = nullptr;
 
+DrawPage::DrawPage()
+{
+	InitializeComponent();
+}
 
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
@@ -399,7 +400,7 @@ void c___GUI_Drawing::DrawPage::SaveHandler(Platform::Object^ sender, Windows::U
 
 
 void c___GUI_Drawing::DrawPage::LoadHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
-{
-	Loader loader = Loader(canvas, shapes);
-	loader.LoadFile();
+{	
+	loader = new Loader(this, canvas, shapes);
+	loader->LoadFile();	
 }
