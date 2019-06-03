@@ -8,6 +8,7 @@ Loader::~Loader()
 {
 }
 
+//open a file picker and load a selected text file
 void Loader::LoadFile()
 {
 	FileOpenPicker^ openPicker = ref new FileOpenPicker();
@@ -52,7 +53,7 @@ void Loader::LoadFile()
 
 }
 
-
+//convert a windows unicode string to a c++ ascii string
 std::string Loader::ConvertString(String ^ winString)
 {
 	
@@ -61,6 +62,7 @@ std::string Loader::ConvertString(String ^ winString)
 	return fooA;
 }
 
+//split a given string on a given character. returns a list of substrings
 std::vector<std::string> Loader::StringSplitOnChar(std::string string, char token)
 {
 	std::vector<std::string> result;
@@ -78,6 +80,7 @@ std::vector<std::string> Loader::StringSplitOnChar(std::string string, char toke
 	return result;
 }
 
+//build the loaded string into objects and add items to canvas and shapes list
 void Loader::Build(std::string loadedstring)
 {
 	std::vector<std::string> lines = StringSplitOnChar(loadedstring, '\n');
@@ -94,9 +97,9 @@ void Loader::Build(std::string loadedstring)
 		Shape* object = nullptr;
 
 		for (unsigned int i = 0; i < splitline.size(); i++) { // check every word for keyword rect or ellip
-			
 
 			if (splitline[i] == "rect") {
+				//get all info regarding rectangle parameters from strings
 				double left = std::stod(splitline[i + 1]);
 				double top = std::stod(splitline[i + 2]);
 				double width = std::stod(splitline[i + 3]);
@@ -107,6 +110,7 @@ void Loader::Build(std::string loadedstring)
 				int b = std::stoi(splitline[i + 8]);
 				Windows::UI::Color color = Windows::UI::ColorHelper::FromArgb(a, r, g, b);
 
+				//create windows shape object and add click and hover handlers
 				Windows::UI::Xaml::Shapes::Rectangle ^rect = ref new Shapes::Rectangle();
 				rect->AddHandler(UIElement::TappedEvent, ref new Windows::UI::Xaml::Input::TappedEventHandler(drawpage, &c___GUI_Drawing::DrawPage::SelectHandler), true);
 				rect->AddHandler(UIElement::PointerEnteredEvent, ref new Windows::UI::Xaml::Input::PointerEventHandler(drawpage, &c___GUI_Drawing::DrawPage::PointerEnterHandler), true);
@@ -124,6 +128,7 @@ void Loader::Build(std::string loadedstring)
 				break;// no point in checking further if first keyword is found
 			}
 			else if (splitline[i] == "ellip") {
+				//get all info regarding ellipse parameters from strings
 				double left = std::stod(splitline[i + 1]);
 				double top = std::stod(splitline[i + 2]);
 				double width = std::stod(splitline[i + 3]);
@@ -134,6 +139,7 @@ void Loader::Build(std::string loadedstring)
 				int b = std::stoi(splitline[i + 8]);
 				Windows::UI::Color color = Windows::UI::ColorHelper::FromArgb(a, r, g, b);
 
+				//create windows shape object and add click and hover handlers
 				Windows::UI::Xaml::Shapes::Ellipse ^ellip = ref new Shapes::Ellipse();
 				ellip->AddHandler(UIElement::TappedEvent, ref new Windows::UI::Xaml::Input::TappedEventHandler(drawpage, &c___GUI_Drawing::DrawPage::SelectHandler), true);
 				ellip->AddHandler(UIElement::PointerEnteredEvent, ref new Windows::UI::Xaml::Input::PointerEventHandler(drawpage, &c___GUI_Drawing::DrawPage::PointerEnterHandler), true);
@@ -150,24 +156,25 @@ void Loader::Build(std::string loadedstring)
 				if(indentCount == 0)shapes.push_back(object); //only add if not subshape
 				break; // no point in checking further if first keyword is found
 			}
-			else {
+			else //if its not a keyword then its an indent
+			{
 				indentCount++;
 			}						
 		}
 
-		if (indentCount == 0)
+		if (indentCount == 0) //if indents are 0 empty hierarchy because this is a new primary node
 		{
 			hierarchyQueue = std::vector<std::tuple<int, Shape*>>(); //empty hierachy tree
 			hierarchyQueue.push_back(std::tuple<int, Shape*>(indentCount, object));
 			currentIndentCount = 0;
 		}
-		else if (indentCount > currentIndentCount)
+		else if (indentCount > currentIndentCount) //inf indents are higher than last time. increase 1 step in the hierarchy
 		{
 			std::get<1>(hierarchyQueue[currentIndentCount])->AddSubShape(object);
 			hierarchyQueue.push_back(std::tuple<int, Shape*>(indentCount, object)); //add to hierarchy
 			currentIndentCount++;
 		}
-		else
+		else //we are decreasing in the hierachy to the last common node
 		{
 			hierarchyQueue.erase(hierarchyQueue.begin() + indentCount, hierarchyQueue.end()); //erase back untill the last common parent
 			hierarchyQueue.push_back(std::tuple<int, Shape*>(indentCount, object)); //add new object to hierarchy
