@@ -79,6 +79,7 @@ DrawPage::DrawPage()
 	InitializeComponent();
 }
 
+//method that is called when the pointer is pressed, makes the canvas shape and appends handlers
 void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns if shape or move is not selected
@@ -131,6 +132,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerPressed(Platform::Object^ sender, 
 	}
 }
 
+//method that is called when the pointer is moved, changes the canvas shape according to new pointer position
 void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns when no modification to the shape needs to be done
@@ -164,6 +166,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerMoved(Platform::Object^ sender, Wi
 	}
 }
 
+//method that is called when the pointer is released from the canvas, creates the definitive shape object
 void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e)
 {
 	// returns if shape is not selected
@@ -192,6 +195,7 @@ void c___GUI_Drawing::DrawPage::canvas_PointerReleased(Platform::Object^ sender,
 //method for handling the user UI input and switching between elements.
 void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
+	//set the color of the toolbarbuttons back to default color
 	DrawPage::RectangleSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
 	DrawPage::EllipseSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
 	DrawPage::ColorSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
@@ -199,6 +203,7 @@ void c___GUI_Drawing::DrawPage::ObjectToggle(Platform::Object^ sender, Windows::
 	DrawPage::GroupSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
 	DrawPage::DeleteSelect->Background = ref new SolidColorBrush(Windows::UI::Colors::LightGray);
 
+	//sets sElem to the correct mode corrosponding with the sender
 	if (sender->Equals(RectangleSelect))
 	{
 		sElem = rectangle;
@@ -435,16 +440,18 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 	//returns if shape is selected
 	if (sElem == rectangle || sElem == ellipse) return;
 
+	//handler for when you want to change the color of one shape
 	if (sElem == cssingle)
 	{
 		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
 
+		//checks if the sender is a shape in the toplevel shapes list, if sender is not found it loops trough the children of the shapes that reside in the toplevel list
 		for (Shape* s : shapes)
 		{
 			if (s->CheckShape(shape) == true)
 			{
 				Command* cmd = new ChangeColorCommand(s, selectedColor);
-				commandStack.Add(cmd);
+				commandStack.Add(cmd); //add command to commandstack, which will trigger the execute of the command
 				return;
 			}
 			else
@@ -455,23 +462,25 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 					if (s->CheckShape(shape) == true)
 					{
 						Command* cmd = new ChangeColorCommand(s, selectedColor);
-						commandStack.Add(cmd);
+						commandStack.Add(cmd);  //add command to commandstack, which will trigger the execute of the command
 						return;
 					}
 				}
 			}
 		}
 	}
+	//handler for changing the color of all the elements beneath the sender
 	if (sElem == csgroup)
 	{
 		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
 
+		//checks if the sender is a shape in the toplevel shapes list, if sender is not found it loops trough the children of the shapes that reside in the toplevel list
 		for (Shape* s : shapes)
 		{
 			if (s->CheckShape(shape) == true)
 			{
 				Command* cmd = new ChangeGroupColorCommand(s, selectedColor);
-				commandStack.Add(cmd);
+				commandStack.Add(cmd);  //add command to commandstack, which will trigger the execute of the command
 				return;
 			}
 			else
@@ -482,24 +491,26 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 					if (s->CheckShape(shape) == true)
 					{
 						Command* cmd = new ChangeGroupColorCommand(s, selectedColor);
-						commandStack.Add(cmd);
+						commandStack.Add(cmd);  //add command to commandstack, which will trigger the execute of the command
 						return;
 					}
 				}
 			}
 		}
 	}
+	//handler for selecting the shape you want to move when the smove or the gmove element is selected
 	else if (sElem == smove || sElem == gmove)
 	{
 		if (selectedShape == nullptr)
 		{
 			Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
 
+			//checks if the sender is a shape in the toplevel shapes list, if sender is not found it loops trough the children of the shapes that reside in the toplevel list
 			for (Shape* s : shapes)
 			{
 				if (s->CheckShape(shape) == true)
 				{
-					selectedShape = s;
+					selectedShape = s; //set sender as selected shape
 					return;
 				}
 				else
@@ -509,7 +520,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 					{
 						if (s->CheckShape(shape) == true)
 						{
-							selectedShape = s;
+							selectedShape = s; //set sender as selected shape
 							return;
 						}
 					}
@@ -517,10 +528,12 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 			}
 		}
 	}
+	//handler for grouping elemeents
 	else if (sElem == group)
 	{
 		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
 
+		//checks if the sender is a shape in the toplevel shapes list, if sender is not found it loops trough the children of the shapes that reside in the toplevel list
 		for (Shape* s : shapes)
 		{
 			if (s->CheckShape(shape) == true)
@@ -528,10 +541,10 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 				if (selectedShape != nullptr)
 				{
 					Command* cmd = new GroupCommand(s, selectedShape, shapes);
-					commandStack.Add(cmd);
-					selectedShape = nullptr;
+					commandStack.Add(cmd);  //add command to commandstack, which will trigger the execute of the command
+					selectedShape = nullptr; //clear the selected Shape
 				}
-				else selectedShape = s;
+				else selectedShape = s; //set sender as selected shape
 				return;
 			}
 			else
@@ -544,26 +557,28 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 						if (selectedShape != nullptr)
 						{
 							Command* cmd = new GroupCommand(s, selectedShape, shapes);
-							commandStack.Add(cmd);
-							selectedShape = nullptr;
+							commandStack.Add(cmd);  //add command to commandstack, which will trigger the execute of the command
+							selectedShape = nullptr; //clear the selected shape
 						}
-						else selectedShape = s;
+						else selectedShape = s; // set sender as selected shape
 						return;
 					}
 				}
 			}
 		}
 	}
+	//handler for deleting elements
 	else if (sElem == del)
 	{
 		Windows::UI::Xaml::Shapes::Shape^ shape = safe_cast<Windows::UI::Xaml::Shapes::Shape^>(sender);
 
+		//checks if the sender is a shape in the toplevel shapes list, if sender is not found it loops trough the children of the shapes that reside in the toplevel list
 		for (Shape* s : shapes)
 		{
 			if (s->CheckShape(shape) == true)
 			{
 				Command* cmd = new DeleteCommand(canvas, s, shapes);
-				commandStack.Add(cmd);
+				commandStack.Add(cmd);  //add command to commandstack, which will trigger the execute of the command
 				return;
 			}
 			else
@@ -574,7 +589,7 @@ void c___GUI_Drawing::DrawPage::SelectHandler(Platform::Object^ sender, Windows:
 					if (s->CheckShape(shape) == true)
 					{
 						Command* cmd = new DeleteCommand(canvas, s, shapes);
-						commandStack.Add(cmd);
+						commandStack.Add(cmd);  //add command to commandstack, which will trigger the execute of the command
 						return;
 					}
 				}
