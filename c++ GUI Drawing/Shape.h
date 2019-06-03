@@ -29,8 +29,8 @@ public:
 
 	//STRATEGY PATTERN
 	virtual void ChangeColor(Windows::UI::Color newColor) = 0; //changes the color of the shape
-	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape) = 0;
-	virtual Windows::UI::Xaml::Shapes::Shape^ GetShape() = 0;
+	virtual bool CheckShape(Windows::UI::Xaml::Shapes::Shape^ shape) = 0; //check if the windows matches the windows shape in the shape object
+	virtual Windows::UI::Xaml::Shapes::Shape^ GetShape() = 0; //returns the
 	virtual Platform::String^ ToString(int counter = 0) = 0; //returns a string with parameters of the object
 
 protected:

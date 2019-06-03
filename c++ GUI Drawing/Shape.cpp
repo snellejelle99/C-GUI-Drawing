@@ -10,11 +10,13 @@ Shape::~Shape()
 {
 }
 
+//gets the color of the shape
 Windows::UI::Color Shape::GetColor()
 {
 	return color;
 }
 
+//add the given shape to the subshape list, returns true if succesfull
 bool Shape::AddSubShape(Shape * subShape)
 {
 	if (!CheckIfParent(subShape))
@@ -30,6 +32,7 @@ bool Shape::AddSubShape(Shape * subShape)
 	return false;
 }
 
+//delete the given shape from the subshape's list of this shape
 void Shape::DelSubShape(Shape * subShape)
 {
 	for (Shape* s : subShapes)
@@ -42,6 +45,7 @@ void Shape::DelSubShape(Shape * subShape)
 	}
 }
 
+//get the values for the left and top margin
 std::vector<double> Shape::getTopLeft()
 {
 	std::vector<double> tl;
@@ -50,6 +54,7 @@ std::vector<double> Shape::getTopLeft()
 	return tl;
 }
 
+//set the values for the left and top margin
 void Shape::setTopLeft(double left, double top)
 {
 	this->left = left;
@@ -60,7 +65,7 @@ void Shape::setTopLeft(double left, double top)
 const std::vector<Shape*> Shape::GetSubShapes()
 {
 	std::vector<Shape*> result;
-	if (subShapes.size() == 0) return result;
+	if (subShapes.size() == 0) return result; //stop condition
 	else
 	{
 		for (Shape* sh : subShapes)
@@ -74,10 +79,11 @@ const std::vector<Shape*> Shape::GetSubShapes()
 	return result;
 }
 
+//get a list with every shape above this shape recursively
 const std::vector<Shape*> Shape::GetAllParents()
 {
 	std::vector<Shape*> result;
-	if (parentShapes.size() == 0) return result;
+	if (parentShapes.size() == 0) return result; //stop condition
 	else
 	{
 		for (Shape* sh : parentShapes)
@@ -91,10 +97,10 @@ const std::vector<Shape*> Shape::GetAllParents()
 	return result;
 }
 
-//return wheter the given shape is already a parent shape above this shape recursively
+//check if the given shape is already a parent shape above this shape recursively
 bool Shape::CheckIfParent(Shape* shape) 
 {
-	if (std::find(parentShapes.begin(), parentShapes.end(), shape) == parentShapes.end()) //ga verder als parent nog niet eerder toegevoegt
+	if (std::find(parentShapes.begin(), parentShapes.end(), shape) == parentShapes.end()) //if it is not a direct parent then check all the parents above this shape.
 	{
 		for (Shape* sh : parentShapes)
 		{
@@ -108,6 +114,7 @@ bool Shape::CheckIfParent(Shape* shape)
 	return false;
 }
 
+//check if the provided shape is in the subshape list or in the subshape list of this shape's subshapes.
 bool Shape::CheckIfSubShape(Shape* shape)
 {
 	if (std::find(subShapes.begin(), subShapes.end(), shape) == subShapes.end())
@@ -124,19 +131,20 @@ bool Shape::CheckIfSubShape(Shape* shape)
 	return false;
 }
 
+//adds a parent(provided as parameter) to the shape, returns true if succesfull
 bool Shape::AddParent(Shape * pShape)
 {
-	if (!CheckIfSubShape(pShape))
+	if (!CheckIfSubShape(pShape)) //check if the possible parent is already a subshape
 	{
-		if (std::find(parentShapes.begin(), parentShapes.end(), pShape) == parentShapes.end()) //if not found add to parentShapes
+		if (std::find(parentShapes.begin(), parentShapes.end(), pShape) == parentShapes.end()) //check if it is already a parent
 		{
-			if (parentShapes.size() == 0) 
+			if (parentShapes.size() == 0) //check if there are no other parents
 			{
-				parentShapes.push_back(pShape);
+				parentShapes.push_back(pShape); //add to parents list
 				return true;
 			}
 		}
-		else if (*std::find(parentShapes.begin(), parentShapes.end(), pShape) == pShape)
+		else if (*std::find(parentShapes.begin(), parentShapes.end(), pShape) == pShape) // check if parent already exists in this shape and return true if so
 		{
 			return true;
 		}
@@ -144,6 +152,7 @@ bool Shape::AddParent(Shape * pShape)
 	return false;
 }
 
+//delete this shape from its parentshapes
 void Shape::DellFromParent()
 {
 	for (Shape* ps : parentShapes)
@@ -152,6 +161,7 @@ void Shape::DellFromParent()
 	}
 }
 
+//get a list with parentshapes
 const std::vector<Shape*> Shape::GetParentShapes()
 {
 	return parentShapes;
