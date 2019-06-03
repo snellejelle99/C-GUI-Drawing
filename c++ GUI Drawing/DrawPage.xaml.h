@@ -22,6 +22,8 @@ namespace c___GUI_Drawing
 	public:
 		DrawPage();
 		void SelectHandler(Platform::Object ^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs ^ e);
+		void PointerEnterHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
+		void PointerLeaveHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
 
 	private:		
 		void canvas_PointerPressed(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
@@ -31,8 +33,8 @@ namespace c___GUI_Drawing
 		void UndoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void ColorPicker_ColorChanged(Windows::UI::Xaml::Controls::ColorPicker^ sender, Windows::UI::Xaml::Controls::ColorChangedEventArgs^ args);
 		void RedoHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void PointerEnterHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
-		void PointerLeaveHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
+		//void PointerEnterHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
+		//void PointerLeaveHandler(Platform::Object^ sender, Windows::UI::Xaml::Input::PointerRoutedEventArgs^ e);
 		//void SelectHandler(Platform::Object ^ sender, Windows::UI::Xaml::Input::TappedRoutedEventArgs ^ e);
 		void SaveHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void LoadHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);

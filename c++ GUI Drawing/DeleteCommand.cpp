@@ -32,11 +32,11 @@ void DeleteCommand::Undo()
 {
 	for (Shape* ps : shape->GetParentShapes()) ps->AddSubShape(shape);
 
-	for (Shape* subShape : savedSubShapes) 
+	for (int i = savedSubShapes.size()-1; i >= 0; i--)
 	{
-		for(Shape* parent : subShape->GetParentShapes())
+		for (Shape* parent : savedSubShapes[i]->GetParentShapes())
 		{
-			parent->AddSubShape(subShape);
+			parent->AddSubShape(savedSubShapes[i]);
 		}
 	}
 

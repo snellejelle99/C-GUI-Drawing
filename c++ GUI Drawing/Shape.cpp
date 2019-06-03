@@ -19,6 +19,7 @@ bool Shape::AddSubShape(Shape * subShape)
 {
 	if (!CheckIfParent(subShape))
 	{		
+		//subShapes.push_back(subShape);
 		bool succes = subShape->AddParent(this);
 		if (succes) { 
 			subShapes.push_back(subShape);
@@ -93,7 +94,7 @@ const std::vector<Shape*> Shape::GetAllParents()
 //return a list containing every shape above this shape recursively
 bool Shape::CheckIfParent(Shape* shape) 
 {
-	if (std::find(parentShapes.begin(), parentShapes.end(), shape) == parentShapes.end())
+	if (std::find(parentShapes.begin(), parentShapes.end(), shape) == parentShapes.end()) //ga verder als parent nog niet eerder toegevoegt
 	{
 		for (Shape* sh : parentShapes)
 		{
@@ -129,7 +130,14 @@ bool Shape::AddParent(Shape * pShape)
 	{
 		if (std::find(parentShapes.begin(), parentShapes.end(), pShape) == parentShapes.end()) //if not found add to parentShapes
 		{
-			parentShapes.push_back(pShape);
+			if (parentShapes.size() == 0) 
+			{
+				parentShapes.push_back(pShape);
+				return true;
+			}
+		}
+		else if (*std::find(parentShapes.begin(), parentShapes.end(), pShape) == pShape)
+		{
 			return true;
 		}
 	}

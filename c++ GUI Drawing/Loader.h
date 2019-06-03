@@ -11,7 +11,6 @@
 
 #include <string>
 
-
 using namespace concurrency;
 using namespace Platform;
 using namespace Windows::Storage;

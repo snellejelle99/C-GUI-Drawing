@@ -82,11 +82,20 @@ void Loader::Build(std::string loadedstring)
 {
 	std::vector<std::string> lines = StringSplitOnChar(loadedstring, '\n');
 
-	for (unsigned int i = 0; i < lines.size(); i++) { //repeat for each line
+	int currentIndentCount = 0;
+	std::vector<std::tuple<int, Shape*>> hierarchyQueue = std::vector<std::tuple<int, Shape*>>();
+
+	for (unsigned int i = 0; i < lines.size()-1; i++) //repeat for each line
+	{ 
 
 		std::vector<std::string> splitline = StringSplitOnChar(lines[i], ' '); //split line into words
 
+		int indentCount = 0;
+		Shape* object = nullptr;
+
 		for (unsigned int i = 0; i < splitline.size(); i++) { // check every word for keyword rect or ellip
+			
+
 			if (splitline[i] == "rect") {
 				double left = std::stod(splitline[i + 1]);
 				double top = std::stod(splitline[i + 2]);
@@ -100,15 +109,18 @@ void Loader::Build(std::string loadedstring)
 
 				Windows::UI::Xaml::Shapes::Rectangle ^rect = ref new Shapes::Rectangle();
 				rect->AddHandler(UIElement::TappedEvent, ref new Windows::UI::Xaml::Input::TappedEventHandler(drawpage, &c___GUI_Drawing::DrawPage::SelectHandler), true);
+				rect->AddHandler(UIElement::PointerEnteredEvent, ref new Windows::UI::Xaml::Input::PointerEventHandler(drawpage, &c___GUI_Drawing::DrawPage::PointerEnterHandler), true);
+				rect->AddHandler(UIElement::PointerExitedEvent, ref new Windows::UI::Xaml::Input::PointerEventHandler(drawpage, &c___GUI_Drawing::DrawPage::PointerLeaveHandler), true);
 				rect->Fill = ref new SolidColorBrush(color);
+				rect->StrokeThickness = 5.0;
 				canvas->SetLeft(rect, left);
 				canvas->SetTop(rect, top);
 				rect->Width = width;
 				rect->Height = height;
 				canvas->Children->Append(rect);
 
-				Rectangle * rectObject = new Rectangle(left, top, color, rect);
-				shapes.push_back(rectObject);
+				object = new Rectangle(left, top, color, rect);
+				if (indentCount == 0)shapes.push_back(object); //only add if not subshape
 				break;// no point in checking further if first keyword is found
 			}
 			else if (splitline[i] == "ellip") {
@@ -124,20 +136,43 @@ void Loader::Build(std::string loadedstring)
 
 				Windows::UI::Xaml::Shapes::Ellipse ^ellip = ref new Shapes::Ellipse();
 				ellip->AddHandler(UIElement::TappedEvent, ref new Windows::UI::Xaml::Input::TappedEventHandler(drawpage, &c___GUI_Drawing::DrawPage::SelectHandler), true);
+				ellip->AddHandler(UIElement::PointerEnteredEvent, ref new Windows::UI::Xaml::Input::PointerEventHandler(drawpage, &c___GUI_Drawing::DrawPage::PointerEnterHandler), true);
+				ellip->AddHandler(UIElement::PointerExitedEvent, ref new Windows::UI::Xaml::Input::PointerEventHandler(drawpage, &c___GUI_Drawing::DrawPage::PointerLeaveHandler), true);
 				ellip->Fill = ref new SolidColorBrush(color);
+				ellip->StrokeThickness = 5.0;
 				canvas->SetLeft(ellip, left);
 				canvas->SetTop(ellip, top);
 				ellip->Width = width;
 				ellip->Height = height;
 				canvas->Children->Append(ellip);
 
-				Ellipse * rectObject = new Ellipse(left, top, color, ellip);
-				shapes.push_back(rectObject);
+				object = new Ellipse(left, top, color, ellip);
+				if(indentCount == 0)shapes.push_back(object); //only add if not subshape
 				break; // no point in checking further if first keyword is found
 			}
 			else {
+				indentCount++;
+			}						
+		}
 
-			}
+		if (indentCount == 0)
+		{
+			hierarchyQueue = std::vector<std::tuple<int, Shape*>>(); //empty hierachy tree
+			hierarchyQueue.push_back(std::tuple<int, Shape*>(indentCount, object));
+			currentIndentCount = 0;
+		}
+		else if (indentCount > currentIndentCount)
+		{
+			std::get<1>(hierarchyQueue[currentIndentCount])->AddSubShape(object);
+			hierarchyQueue.push_back(std::tuple<int, Shape*>(indentCount, object)); //add to hierarchy
+			currentIndentCount++;
+		}
+		else
+		{
+			hierarchyQueue.erase(hierarchyQueue.begin() + indentCount, hierarchyQueue.end()); //erase back untill the last common parent
+			hierarchyQueue.push_back(std::tuple<int, Shape*>(indentCount, object)); //add new object to hierarchy
+			std::get<1>(hierarchyQueue[indentCount - 1])->AddSubShape(object);
+			currentIndentCount = indentCount;
 		}
 	}
 }
