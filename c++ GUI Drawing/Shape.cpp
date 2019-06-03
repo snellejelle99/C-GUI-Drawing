@@ -91,7 +91,7 @@ const std::vector<Shape*> Shape::GetAllParents()
 	return result;
 }
 
-//return a list containing every shape above this shape recursively
+//return wheter the given shape is already a parent shape above this shape recursively
 bool Shape::CheckIfParent(Shape* shape) 
 {
 	if (std::find(parentShapes.begin(), parentShapes.end(), shape) == parentShapes.end()) //ga verder als parent nog niet eerder toegevoegt
@@ -105,7 +105,7 @@ bool Shape::CheckIfParent(Shape* shape)
 		}
 		return false;
 	}
-	return true;
+	return false;
 }
 
 bool Shape::CheckIfSubShape(Shape* shape)
@@ -121,7 +121,7 @@ bool Shape::CheckIfSubShape(Shape* shape)
 		}
 		return false;
 	}
-	return true;
+	return false;
 }
 
 bool Shape::AddParent(Shape * pShape)
