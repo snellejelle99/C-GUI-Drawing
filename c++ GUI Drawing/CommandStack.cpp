@@ -8,12 +8,14 @@ CMDStack::CMDStack(const std::stack<Command*> executeStack, const std::stack<Com
 {
 }
 
+//executes command and pushes to executestack
 void CMDStack::Add(Command * const newCMD)
 {
 	newCMD->Execute();
 	executeStack.push(newCMD);
 }
 
+//pulls command from executestack undos and pushes to revertstack
 void CMDStack::Undo()
 {
 	if (!executeStack.empty())
@@ -24,6 +26,7 @@ void CMDStack::Undo()
 	}
 }
 
+//pulls command from revertstack undos and pushes to executestack
 void CMDStack::Redo()
 {
 	if (!revertStack.empty())
@@ -32,6 +35,13 @@ void CMDStack::Redo()
 		executeStack.push(revertStack.top());
 		revertStack.pop();
 	}
+}
+
+//empties the commandstack
+void CMDStack::Flush()
+{
+	executeStack = std::stack<Command*>();
+	revertStack = std::stack<Command*>();
 }
 
 CMDStack::~CMDStack()

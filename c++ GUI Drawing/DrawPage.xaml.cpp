@@ -592,6 +592,17 @@ void c___GUI_Drawing::DrawPage::SaveHandler(Platform::Object^ sender, Windows::U
 //method for handling the load button
 void c___GUI_Drawing::DrawPage::LoadHandler(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {	
+	//empty page
+	std::vector<Command*> temp = std::vector<Command*>();
+	for (Shape* sh : shapes)
+	{
+		Command* cmd = new DeleteCommand(canvas, sh, shapes);
+		temp.push_back(cmd);
+	}
+	for (Command* cmd : temp) commandStack.Add(cmd);
+	commandStack.Flush();
+
+	//start loader
 	loader = new Loader(this, canvas, shapes);
 	loader->LoadFile();	
 }

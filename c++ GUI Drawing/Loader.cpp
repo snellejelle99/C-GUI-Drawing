@@ -82,9 +82,12 @@ std::vector<std::string> Loader::StringSplitOnChar(std::string string, char toke
 
 //build the loaded string into objects and add items to canvas and shapes list
 void Loader::Build(std::string loadedstring)
-{
+{	
+
+	//split loaded string into lines
 	std::vector<std::string> lines = StringSplitOnChar(loadedstring, '\n');
 
+	//indentcount and hierarchy vector for building correct hierarchy
 	int currentIndentCount = 0;
 	std::vector<std::tuple<int, Shape*>> hierarchyQueue = std::vector<std::tuple<int, Shape*>>();
 
@@ -97,6 +100,7 @@ void Loader::Build(std::string loadedstring)
 		Shape* object = nullptr;
 
 		for (unsigned int i = 0; i < splitline.size(); i++) { // check every word for keyword rect or ellip
+			object == nullptr; //reset object
 
 			if (splitline[i] == "rect") {
 				//get all info regarding rectangle parameters from strings

@@ -9,6 +9,8 @@
 #include "Rectangle.h"
 #include "Ellipse.h"
 
+#include "DeleteCommand.h"
+
 #include <string>
 
 using namespace concurrency;
@@ -25,9 +27,10 @@ class Loader
 public:
 	Loader(c___GUI_Drawing::DrawPage ^ drawpage,Windows::UI::Xaml::Controls::Canvas ^ canvas, std::vector<Shape*> & shapes);
 	~Loader();
-	void LoadFile();	
+	void LoadFile(); //opens file picker	
 
 private:
+	//helper functions
 	std::string ConvertString(String^ string);
 	std::vector<std::string> StringSplitOnChar(std::string string, char token);
 
