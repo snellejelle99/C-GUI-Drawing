@@ -1,7 +1,7 @@
 # C++ GUI Drawing
 
 a Simple program for drawing shapes in different colors on a blank canvas
-Created for
+Created for Windows 10
 
 ## Getting Started
 
