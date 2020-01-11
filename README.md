@@ -1,7 +1,15 @@
 # C++ GUI Drawing
 
-a Simple program for drawing shapes in different colors on a blank canvas
-Created for Windows 10
+This is a simple shape drawing program created for an assignment by second year software engeneering students at NHL Stenden Hogeschool. 
+The purpose of the assignment was to learn to use and implement design patterns.
+
+Used design patterns:
+* Command Pattern
+* Composite Pattern
+* Decorator Pattern
+* Singleton Pattern
+* Strategy Pattern
+* Visitor Pattern
 
 ## Getting Started
 
@@ -53,7 +61,7 @@ Add additional notes about how to deploy this on a live system
 ## Authors
 
 * **Jelle Jan Bleeker** - *Initial work* - [snellejelle99](https://github.com/snellejelle99)
-* **Swen v/d Wijngaard** - *Initial work* - [SwenvdWijngaard](https://github.com/SwenvdWijngaard)
+* **Swen van der Wijngaard** - *Initial work* - [SwenvdWijngaard](https://github.com/SwenvdWijngaard)
 
 See also the list of [contributors](https://github.com/snellejelle99/C-GUI-Drawing/contributors) who participated in this project.
 
