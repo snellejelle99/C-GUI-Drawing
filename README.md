@@ -1,6 +1,6 @@
 # C++ GUI Drawing
 
-This is a simple shape drawing program created for an assignment by second year software engeneering students at NHL Stenden Hogeschool. 
+This is a simple shape drawing program created for an assignment by second year software engineering students at NHL Stenden Hogeschool. 
 The purpose of the assignment was to learn to use and implement design patterns.
 
 ### Used design patterns:
